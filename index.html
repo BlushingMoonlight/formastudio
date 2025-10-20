@@ -414,15 +414,15 @@
                              <h3 class="text-2xl font-bold mb-6 text-center">Os Dados Comprovam</h3>
                              <div class="space-y-8">
                                 <div class="text-center">
-                                     <p class="text-5xl font-bold highlight-color">75%</p>
+                                     <p id="stat-credibility" class="text-5xl font-bold highlight-color">0%</p>
                                      <p class="mt-2 text-gray-600">dos consumidores julgam a credibilidade de um negócio pelo design do seu site.</p>
                                 </div>
                                  <div class="text-center">
-                                     <p class="text-5xl font-bold highlight-color">3s</p>
+                                     <p id="stat-load-time" class="text-5xl font-bold highlight-color">0s</p>
                                      <p class="mt-2 text-gray-600">É o tempo máximo de carregamento antes que mais da metade dos usuários mobile abandonem a página.</p>
                                 </div>
                                  <div class="text-center">
-                                     <p class="text-5xl font-bold highlight-color">0,05s</p>
+                                     <p id="stat-impression-time" class="text-5xl font-bold highlight-color">0,00s</p>
                                      <p class="mt-2 text-gray-600">É o tempo que um visitante leva para formar uma primeira impressão sobre o seu design.</p>
                                 </div>
                              </div>
@@ -521,6 +521,49 @@
             whatsappPopup.classList.add('opacity-0');
             whatsappPopup.classList.add('pointer-events-none');
         });
+
+        // Script para Animação de Números
+        const statsContainer = document.querySelector('#importancia .bg-gray-100');
+        let animationStarted = false;
+
+        const animateValue = (obj, start, end, duration, suffix = '', decimals = 0) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentValue = (start + progress * (end - start));
+                if (decimals > 0) {
+                    obj.innerHTML = currentValue.toFixed(decimals).replace('.', ',') + suffix;
+                } else {
+                    obj.innerHTML = Math.floor(currentValue) + suffix;
+                }
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !animationStarted) {
+                    animationStarted = true;
+                    const stat1 = document.getElementById('stat-credibility');
+                    const stat2 = document.getElementById('stat-load-time');
+                    const stat3 = document.getElementById('stat-impression-time');
+                    
+                    animateValue(stat1, 0, 75, 1500, '%');
+                    animateValue(stat2, 0, 3, 1500, 's');
+                    animateValue(stat3, 0, 0.05, 1500, 's', 2);
+
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        if (statsContainer) {
+            statsObserver.observe(statsContainer);
+        }
 
     </script>
 </body>
