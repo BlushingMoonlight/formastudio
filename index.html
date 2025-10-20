@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forma Studio | Sites para Arquitetos</title>
-    <meta name="description" content="Criamos presenças digitais elegantes e funcionais para escritórios de arquitetura, transformando seu portfólio em uma poderosa ferramenta de captação de clientes.">
+    <title>Forma Studio | Sites Elegantes para Arquitetos</title>
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Criamos presenças digitais elegantes e funcionais para escritórios de arquitetura, transformando seu portfólio em uma poderosa ferramenta de captação de clientes.">
+    <meta name="keywords" content="sites para arquitetos, site para escritório de arquitetura, portfólio para arquiteto, marketing para arquitetos, presença digital arquitetura, Forma Studio">
+    <meta name="author" content="Forma Studio">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.formastudio.com.br/"> <!-- Substituir pela URL real -->
+    <meta property="og:title" content="Forma Studio | Sites Elegantes para Arquitetos">
+    <meta property="og:description" content="Transforme seu portfólio em uma poderosa ferramenta para atrair e converter os clientes certos.">
+    <meta property="og:image" content="https://placehold.co/1200x630/1A1A1A/FFFFFF?text=Forma+Studio">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.formastudio.com.br/"> <!-- Substituir pela URL real -->
+    <meta property="twitter:title" content="Forma Studio | Sites Elegantes para Arquitetos">
+    <meta property="twitter:description" content="Transforme seu portfólio em uma poderosa ferramenta para atrair e converter os clientes certos.">
+    <meta property="twitter:image" content="https://placehold.co/1200x630/1A1A1A/FFFFFF?text=Forma+Studio">
+    
+    <!-- Favicon Placeholders -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2215%22 fill=%22%231A1A1A%22></rect><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-size=%2260%22 fill=%22%23B88A5A%22 font-family=%22sans-serif%22>F</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2215%22 fill=%22%231A1A1A%22></rect><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-size=%2260%22 fill=%22%23B88A5A%22 font-family=%22sans-serif%22>F</text></svg>">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -14,8 +36,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Favicon (Simples, pode ser substituído por um SVG/PNG) -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>F</text></svg>">
+    <!-- Font Awesome para o ícone do WhatsApp -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         body {
@@ -43,6 +65,35 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Estilos para o botão flutuante do WhatsApp (inspirado no site AVX) */
+        .forma-whatsapp-fab {
+            position: fixed;
+            width: 60px; height: 60px;
+            bottom: 24px; right: 24px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            animation: forma-pulse-whatsapp 2.5s ease-in-out infinite;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .forma-whatsapp-fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        @keyframes forma-pulse-whatsapp {
+          0% { transform: scale(1); box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); }
+          50% { transform: scale(1.05); box-shadow: 0px 6px 20px rgba(37, 211, 102, 0.4); }
+          100% { transform: scale(1); box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -56,6 +107,7 @@
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
                 <a href="#servicos" class="hover:text-black transition-colors">Serviços</a>
                 <a href="#portfolio" class="hover:text-black transition-colors">Portfólio</a>
+                <a href="#sobre" class="hover:text-black transition-colors">Sobre Nós</a>
                 <a href="#contato" class="hover:text-black transition-colors">Contato</a>
             </nav>
             <a href="#contato" class="hidden md:block bg-black text-white px-5 py-2 rounded-md text-sm font-medium hover:bg-gray-800 transition-colors">
@@ -71,6 +123,7 @@
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 flex flex-col space-y-4">
             <a href="#servicos" class="text-gray-600 hover:text-black transition-colors">Serviços</a>
             <a href="#portfolio" class="text-gray-600 hover:text-black transition-colors">Portfólio</a>
+            <a href="#sobre" class="text-gray-600 hover:text-black transition-colors">Sobre Nós</a>
             <a href="#contato" class="text-gray-600 hover:text-black transition-colors">Contato</a>
             <a href="#contato" class="bg-black text-white text-center px-5 py-2 rounded-md text-sm font-medium hover:bg-gray-800 transition-colors">
                 Iniciar Projeto
@@ -109,7 +162,10 @@
                     <div class="bg-white border border-gray-200 rounded-lg p-8 flex flex-col reveal" style="transition-delay: 200ms;">
                         <h3 class="text-2xl font-bold">Essencial</h3>
                         <p class="text-gray-500 mt-2 mb-6">A vitrine digital ideal para iniciar sua presença online.</p>
-                        <p class="text-4xl font-bold mb-8">R$ 750</p>
+                        <div class="mb-8">
+                            <p class="text-2xl text-gray-400 line-through">R$ 550</p>
+                            <p class="text-4xl font-bold text-highlight-color">R$ 350</p>
+                        </div>
                         <ul class="space-y-4 text-gray-600 mb-10 flex-grow">
                             <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Página única (one-page)</li>
                             <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Design responsivo</li>
@@ -125,7 +181,10 @@
                         <span class="absolute top-0 right-0 bg-highlight text-black text-xs font-bold px-4 py-1 rounded-bl-lg">MAIS POPULAR</span>
                         <h3 class="text-2xl font-bold">Profissional</h3>
                         <p class="text-gray-300 mt-2 mb-6">A ferramenta completa para captar clientes e se destacar.</p>
-                        <p class="text-4xl font-bold mb-8">R$ 1.500</p>
+                        <div class="mb-8">
+                            <p class="text-2xl text-gray-400 line-through">R$ 950</p>
+                            <p class="text-4xl font-bold">R$ 650</p>
+                        </div>
                         <ul class="space-y-4 text-gray-200 mb-10 flex-grow">
                             <li class="flex items-start font-bold"><svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Tudo do plano Essencial, e mais:</li>
                             <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Otimização para SEO</li>
@@ -146,7 +205,8 @@
                             <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Design 100% exclusivo</li>
                             <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Blog integrado</li>
                             <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Microanimações e interações</li>
-                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>E-mail profissional e suporte</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>E-mail profissional dedicado</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Suporte com o SAC em tempo integral</li>
                         </ul>
                         <a href="#contato" class="mt-auto w-full text-center bg-gray-100 text-black px-6 py-3 rounded-md font-semibold hover:bg-gray-200 transition-colors">Quero este</a>
                     </div>
@@ -162,7 +222,7 @@
                     <p class="text-3xl md:text-4xl font-bold mt-2 max-w-2xl mx-auto reveal" style="transition-delay: 100ms;">Projetos que unem forma e função no ambiente digital.</p>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Projeto 1 -->
                     <div class="group reveal" style="transition-delay: 200ms;">
                         <div class="bg-gray-100 rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
@@ -195,12 +255,107 @@
                             <p class="text-gray-500 mt-1">Navegação intuitiva e portfólio organizado por categorias.</p>
                         </div>
                     </div>
+
+                    <!-- Projeto 4 -->
+                    <div class="group reveal" style="transition-delay: 500ms;">
+                        <div class="bg-gray-100 rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
+                            <img src="https://placehold.co/600x600/e0e0e0/333333?text=Urbe+Corp" alt="Projeto de site para arquitetura corporativa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-xl font-semibold">Urbe | Arquitetura Corp.</h3>
+                            <p class="text-gray-500 mt-1">Comunicação visual sóbria e foco em resultados comerciais.</p>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 5 -->
+                    <div class="group reveal" style="transition-delay: 200ms;">
+                        <div class="bg-gray-100 rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
+                            <img src="https://placehold.co/600x600/333333/ffffff?text=Refúgio" alt="Projeto de site para arquitetura de refúgios e cabanas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-xl font-semibold">Refúgio | Casas de Campo</h3>
+                            <p class="text-gray-500 mt-1">Site que transmite aconchego e conexão com a natureza.</p>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 6 -->
+                    <div class="group reveal" style="transition-delay: 300ms;">
+                        <div class="bg-gray-100 rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
+                            <img src="https://placehold.co/600x600/f0f0f0/B88A5A?text=Vértice" alt="Projeto de site para edifícios e urbanismo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-xl font-semibold">Vértice | Urbanismo</h3>
+                            <p class="text-gray-500 mt-1">Plataforma robusta para exibição de projetos de larga escala.</p>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 7 -->
+                    <div class="group reveal" style="transition-delay: 400ms;">
+                        <div class="bg-gray-100 rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
+                            <img src="https://placehold.co/600x600/ffffff/1A1A1A?text=Ângulo" alt="Projeto de site para design de interiores comerciais" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-xl font-semibold">Ângulo | Interiores Comerciais</h3>
+                            <p class="text-gray-500 mt-1">Design arrojado para atrair clientes para lojas e escritórios.</p>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 8 -->
+                    <div class="group reveal" style="transition-delay: 500ms;">
+                        <div class="bg-gray-100 rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
+                            <img src="https://placehold.co/600x600/1A1A1A/B88A5A?text=Traço+Fino" alt="Projeto de site para arquiteto de alto padrão" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-xl font-semibold">Traço Fino | Alto Padrão</h3>
+                            <p class="text-gray-500 mt-1">Elegância e exclusividade em cada detalhe do layout.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Sobre Nós -->
+        <section id="sobre" class="py-24">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="reveal">
+                        <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500">Sobre a Forma Studio</h2>
+                        <p class="text-3xl md:text-4xl font-bold mt-2">Nós entendemos a linguagem da arquitetura.</p>
+                        <p class="mt-6 text-gray-600 leading-relaxed">
+                            A Forma Studio nasceu de uma percepção clara: grandes projetos de arquitetura merecem uma presença digital à sua altura. Somos um estúdio de design e tecnologia focado exclusivamente em criar sites para arquitetos e escritórios, porque acreditamos que um portfólio online deve ter o mesmo rigor estético e funcional de uma planta bem executada.
+                        </p>
+                        <p class="mt-4 text-gray-600 leading-relaxed">
+                            Nós não apenas criamos sites. Nós traduzimos sua visão arquitetônica para o ambiente digital. Nosso processo é colaborativo e ágil, garantindo que o resultado final seja um reflexo fiel da identidade do seu estúdio, otimizado para atrair os clientes que você realmente deseja.
+                        </p>
+                    </div>
+                    <div class="reveal" style="transition-delay: 200ms;">
+                        <div class="bg-white rounded-lg p-8 border border-gray-200 space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-highlight/10 text-highlight-color flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold">Design com Propósito</h4>
+                                    <p class="text-gray-600 mt-1">Layouts limpos, tipografia elegante e foco total na usabilidade para valorizar suas imagens e projetos.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-highlight/10 text-highlight-color flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold">Tecnologia e Performance</h4>
+                                    <p class="text-gray-600 mt-1">Sites rápidos, otimizados para o Google (SEO) e prontos para gerar negócios com integrações de marketing.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Seção CTA Final -->
-        <section id="contato" class="py-24">
+        <section id="contato" class="py-24 bg-white">
             <div class="container mx-auto px-6 text-center">
                  <h2 class="text-3xl md:text-5xl font-bold leading-tight max-w-3xl mx-auto reveal">
                     Vamos dar <span class="highlight-color">forma</span> ao seu projeto digital?
@@ -233,20 +388,33 @@
         </div>
     </footer>
 
+    <!-- Botão Flutuante de WhatsApp -->
+    <div class="fixed bottom-6 right-6 z-40 group">
+        <div id="whatsapp-popup" class="absolute bottom-full right-0 mb-3 w-64 bg-white rounded-lg shadow-lg p-4 opacity-0 transform translate-y-2 transition-all duration-300 pointer-events-none">
+            <button id="close-popup" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">&times;</button>
+            <p class="text-sm font-semibold">Forma Studio</p>
+            <p class="text-sm text-gray-600 mt-1">Olá! Precisa de ajuda ou quer tirar uma dúvida? Fale conosco.</p>
+        </div>
+        <a href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Forma%20Studio%20e%20tenho%20interesse%20em%20criar%20um%20site%20para%20meu%20escrit%C3%B3rio." target="_blank" class="forma-whatsapp-fab">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+
     <script>
         // Script para menu mobile
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelectorAll('#mobile-menu a');
 
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Fechar menu mobile ao clicar em um link
-        mobileMenu.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A') {
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
-            }
+            });
         });
 
         // Script para animação de scroll
@@ -260,6 +428,22 @@
         }, { threshold: 0.1 });
 
         revealElements.forEach(el => observer.observe(el));
+        
+        // Script para Pop-up do WhatsApp
+        const whatsappPopup = document.getElementById('whatsapp-popup');
+        const closePopupButton = document.getElementById('close-popup');
+
+        setTimeout(() => {
+            whatsappPopup.classList.remove('opacity-0', 'translate-y-2');
+            whatsappPopup.classList.add('opacity-100', 'translate-y-0');
+            whatsappPopup.classList.remove('pointer-events-none');
+        }, 5000); // Aparece após 5 segundos
+
+        closePopupButton.addEventListener('click', () => {
+            whatsappPopup.classList.add('opacity-0');
+            whatsappPopup.classList.add('pointer-events-none');
+        });
+
     </script>
 </body>
 </html>
