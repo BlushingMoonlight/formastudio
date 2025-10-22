@@ -125,6 +125,17 @@
             transform: translateY(0);
             pointer-events: auto;
         }
+        
+        /* === NOVOS ESTILOS PARA O CANVAS DA HERO === */
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Canvas fica na camada 1 */
+            background-color: #FFFFFF; /* Fundo branco original da seção */
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -164,8 +175,14 @@
 
     <main>
         <!-- Seção Hero -->
-        <section class="pt-32 pb-20 bg-white">
-            <div class="container mx-auto px-6 text-center">
+        <!-- MUDANÇA: bg-white removido, 'relative' e 'overflow-hidden' adicionados -->
+        <section class="pt-32 pb-20 relative overflow-hidden">
+            
+            <!-- NOVO ELEMENTO CANVAS -->
+            <canvas id="hero-canvas"></canvas>
+
+            <!-- MUDANÇA: Adicionado 'relative' e 'z-10' para ficar sobre o canvas -->
+            <div class="container mx-auto px-6 text-center relative z-10">
                 <h1 class="text-4xl md:text-6xl font-bold leading-tight md:leading-snug max-w-4xl mx-auto reveal">
                     Sites que refletem a estética <br class="hidden md:block"> do seu <span class="highlight-color">estúdio de arquitetura.</span>
                 </h1>
@@ -709,6 +726,158 @@
             });
         }
 
+        // === NOVO SCRIPT PARA O CANVAS DA HERO ===
+        const heroCanvas = document.getElementById('hero-canvas');
+        if (heroCanvas) {
+            const ctx = heroCanvas.getContext('2d');
+            let particlesArray;
+            let animationFrameId;
+
+            // Cores baseadas na paleta do site (#1A1A1A, #B88A5A)
+            const particleColor = 'rgba(184, 138, 90, 0.6)'; // highlight-color (com alfa)
+            const lineColor = 'rgba(26, 26, 26, 0.08)'; // Preto suave (com alfa)
+
+            // Configura o mouse
+            const mouse = {
+                x: null,
+                y: null,
+                radius: 120 // Raio de interação
+            };
+
+            window.addEventListener('mousemove', (event) => {
+                const rect = heroCanvas.getBoundingClientRect();
+                mouse.x = event.clientX - rect.left;
+                mouse.y = event.clientY - rect.top;
+            });
+
+            function resetMouse() {
+                mouse.x = null;
+                mouse.y = null;
+            }
+            window.addEventListener('mouseout', resetMouse);
+            heroCanvas.addEventListener('mouseleave', resetMouse); // Adicionar tb no canvas
+
+            // Classe da Partícula
+            class Particle {
+                constructor(x, y, directionX, directionY, size, color) {
+                    this.x = x;
+                    this.y = y;
+                    this.directionX = directionX;
+                    this.directionY = directionY;
+                    this.size = size;
+                    this.color = color;
+                }
+
+                // Desenha a partícula
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+
+                // Atualiza a posição da partícula
+                update() {
+                    // Interação com o mouse (repulsão)
+                    if (mouse.x !== null && mouse.y !== null) {
+                        let dx_mouse = mouse.x - this.x;
+                        let dy_mouse = mouse.y - this.y;
+                        let distance_mouse = Math.sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+                        
+                        if (distance_mouse < mouse.radius) {
+                            let forceDirectionX = dx_mouse / distance_mouse;
+                            let forceDirectionY = dy_mouse / distance_mouse;
+                            let force = (mouse.radius - distance_mouse) / mouse.radius;
+                            
+                            // Mover para longe do mouse
+                            this.x -= forceDirectionX * force * 2; 
+                            this.y -= forceDirectionY * force * 2;
+                        }
+                    }
+
+                    // Flutuação constante
+                    this.x += this.directionX;
+                    this.y += this.directionY;
+                    
+                    // Colisão com as bordas (bounce)
+                    if (this.x + this.size > heroCanvas.width || this.x - this.size < 0) {
+                        this.directionX = -this.directionX;
+                    }
+                    if (this.y + this.size > heroCanvas.height || this.y - this.size < 0) {
+                        this.directionY = -this.directionY;
+                    }
+                }
+            }
+
+            // Inicializar partículas
+            function init() {
+                particlesArray = [];
+                // Ajustar tamanho do canvas ao seu container
+                heroCanvas.width = heroCanvas.offsetWidth;
+                heroCanvas.height = heroCanvas.offsetHeight;
+                
+                let numberOfParticles = (heroCanvas.width * heroCanvas.height) / 9000;
+                for (let i = 0; i < numberOfParticles; i++) {
+                    let size = (Math.random() * 2.5) + 1; // Tamanho entre 1 e 3.5
+                    let x = (Math.random() * ((heroCanvas.width - size * 2) - (size * 2)) + size * 2);
+                    let y = (Math.random() * ((heroCanvas.height - size * 2) - (size * 2)) + size * 2);
+                    let directionX = (Math.random() * 0.4) - 0.2; // Movimento lento
+                    let directionY = (Math.random() * 0.4) - 0.2;
+                    let color = particleColor;
+                    particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+                }
+            }
+
+            // Conectar partículas com linhas (efeito plexus)
+            function connect() {
+                let opacityValue = 1;
+                let connectRadius = (heroCanvas.width/7) * (heroCanvas.height/7); // Raio de conexão
+                
+                for (let a = 0; a < particlesArray.length; a++) {
+                    for (let b = a; b < particlesArray.length; b++) {
+                        let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
+                                       ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                        
+                        if (distance < connectRadius / 1.5) { // /1.5 para menos linhas
+                            opacityValue = 1 - (distance / (connectRadius / 2)); // /2 para fade mais rápido
+                            let strokeStyle = lineColor.replace('0.08', opacityValue < 0 ? 0 : opacityValue.toFixed(2));
+                            
+                            ctx.strokeStyle = strokeStyle;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            // Loop de Animação
+            function animate() {
+                animationFrameId = requestAnimationFrame(animate);
+                ctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+
+                connect(); // Desenha as linhas por baixo
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update(); // Atualiza posição
+                    particlesArray[i].draw();   // Desenha a partícula por cima
+                }
+            }
+
+            // Lidar com redimensionamento da janela
+            window.addEventListener('resize', () => {
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                }
+                init();
+                animate();
+            });
+
+            // Iniciar
+            init();
+            animate();
+        }
 
     </script>
 </body>
