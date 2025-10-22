@@ -734,8 +734,9 @@
             let animationFrameId;
 
             // Cores baseadas na paleta do site (#1A1A1A, #B88A5A)
-            const particleColor = 'rgba(184, 138, 90, 0.6)'; // highlight-color (com alfa)
-            const lineColor = 'rgba(26, 26, 26, 0.08)'; // Preto suave (com alfa)
+            // MUDANÇA: Reduzida a opacidade para melhorar o contraste
+            const particleColor = 'rgba(184, 138, 90, 0.4)'; // highlight-color (alfa 0.4)
+            const lineColor = 'rgba(26, 26, 26, 0.05)'; // Preto suave (alfa 0.05)
 
             // Configura o mouse
             const mouse = {
@@ -840,7 +841,8 @@
                         
                         if (distance < connectRadius / 1.5) { // /1.5 para menos linhas
                             opacityValue = 1 - (distance / (connectRadius / 2)); // /2 para fade mais rápido
-                            let strokeStyle = lineColor.replace('0.08', opacityValue < 0 ? 0 : opacityValue.toFixed(2));
+                            // MUDANÇA: Atualizado o valor base da opacidade
+                            let strokeStyle = lineColor.replace('0.05', opacityValue < 0 ? 0 : opacityValue.toFixed(2));
                             
                             ctx.strokeStyle = strokeStyle;
                             ctx.lineWidth = 1;
