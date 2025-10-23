@@ -36,7 +36,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome para o ícone do WhatsApp -->
+    <!-- Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -93,7 +93,7 @@
           100% { transform: scale(1); box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); }
         }
 
-        /* NOVOS ESTILOS PARA O POPUP DO WHATSAPP */
+        /* Estilos para o popup do WhatsApp */
         .whatsapp-popup-content {
             position: absolute;
             bottom: 100%;
@@ -126,7 +126,7 @@
             pointer-events: auto;
         }
         
-        /* === NOVOS ESTILOS PARA O CANVAS DA HERO === */
+        /* Estilos para o Canvas da Hero */
         #hero-canvas {
             position: absolute;
             top: 0;
@@ -135,6 +135,41 @@
             height: 100%;
             z-index: 1; /* Canvas fica na camada 1 */
             background-color: #FFFFFF; /* Fundo branco original da seção */
+        }
+        
+        /* --- NOVO ESTILO PARA O TIMER DA PROMOÇÃO --- */
+        .promo-timer {
+            background-color: #B88A5A; /* bg-highlight */
+            color: #1A1A1A; /* Preto suave */
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: -16px; /* Puxa para cima */
+            margin-bottom: 24px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            box-shadow: 0 4px 10px rgba(184, 138, 90, 0.3);
+        }
+        .promo-timer-dark {
+            background-color: #B88A5A; /* bg-highlight */
+            color: #FFFFFF; /* Texto branco para contraste no card escuro */
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: -16px;
+            margin-bottom: 24px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            box-shadow: 0 4px 15px rgba(184, 138, 90, 0.4);
+        }
+        .promo-timer-dark span, .promo-timer span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 400;
+            opacity: 0.85;
+            margin-bottom: 4px;
         }
     </style>
 </head>
@@ -147,7 +182,9 @@
                 FORMA <span class="font-light">STUDIO</span>
             </a>
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
-                <a href="#servicos" class="hover:text-black transition-colors">Serviços</a>
+                <a href="#servicos" class="hover:text-black transition-colors">Planos</a>
+                <!-- ATUALIZADO: Link para nova seção -->
+                <a href="#suporte" class="hover:text-black transition-colors">Suporte</a>
                 <a href="#portfolio" class="hover:text-black transition-colors">Portfólio</a>
                 <a href="#sobre" class="hover:text-black transition-colors">Sobre Nós</a>
                 <a href="#contato" class="hover:text-black transition-colors">Contato</a>
@@ -163,7 +200,9 @@
         </div>
         <!-- Menu Mobile -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 flex flex-col space-y-4">
-            <a href="#servicos" class="text-gray-600 hover:text-black transition-colors">Serviços</a>
+            <a href="#servicos" class="text-gray-600 hover:text-black transition-colors">Planos</a>
+            <!-- ATUALIZADO: Link para nova seção -->
+            <a href="#suporte" class="text-gray-600 hover:text-black transition-colors">Suporte</a>
             <a href="#portfolio" class="text-gray-600 hover:text-black transition-colors">Portfólio</a>
             <a href="#sobre" class="text-gray-600 hover:text-black transition-colors">Sobre Nós</a>
             <a href="#contato" class="text-gray-600 hover:text-black transition-colors">Contato</a>
@@ -175,13 +214,10 @@
 
     <main>
         <!-- Seção Hero -->
-        <!-- MUDANÇA: bg-white removido, 'relative' e 'overflow-hidden' adicionados -->
-        <section class="pt-32 pb-20 relative overflow-hidden">
+        <section class="pt-32 pb-20 relative overflow-hidden bg-white">
             
-            <!-- NOVO ELEMENTO CANVAS -->
             <canvas id="hero-canvas"></canvas>
 
-            <!-- MUDANÇA: Adicionado 'relative' e 'z-10' para ficar sobre o canvas -->
             <div class="container mx-auto px-6 text-center relative z-10">
                 <h1 class="text-4xl md:text-6xl font-bold leading-tight md:leading-snug max-w-4xl mx-auto reveal">
                     Sites que refletem a estética <br class="hidden md:block"> do seu <span class="highlight-color">estúdio de arquitetura.</span>
@@ -197,7 +233,7 @@
             </div>
         </section>
 
-        <!-- Seção Importância do Site (REORDENADA) -->
+        <!-- Seção Importância do Site -->
         <section id="importancia" class="py-24 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
@@ -275,7 +311,7 @@
             </div>
         </section>
 
-        <!-- Seção de Serviços (REORDENADA) -->
+        <!-- Seção de Serviços (Planos) -->
         <section id="servicos" class="py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
@@ -287,17 +323,25 @@
                     <!-- Plano Essencial -->
                     <div class="bg-white border border-gray-200 rounded-lg p-8 flex flex-col reveal" style="transition-delay: 200ms;">
                         <h3 class="text-2xl font-bold">Essencial</h3>
-                        <p class="text-gray-500 mt-2 mb-6">A vitrine digital ideal para iniciar sua presença online.</p>
-                        <div class="mb-8">
+                        <p class="text-gray-500 mt-2">A vitrine digital ideal para iniciar sua presença online.</p>
+                        <!-- ATUALIZADO: Prazo de Entrega -->
+                        <p class="text-sm text-gray-500 mt-2 font-medium">Prazo de entrega: 24h a 72h</p>
+                        <div class="my-6">
                             <p class="text-2xl text-gray-400 line-through">R$ 550</p>
                             <p class="text-4xl font-bold text-highlight-color">R$ 380</p>
                         </div>
+                        <!-- ATUALIZADO: Timer da Promoção -->
+                        <div id="timer-essencial" class="promo-timer">
+                            <span>A promoção termina em:</span>
+                            Carregando...
+                        </div>
                         <ul class="space-y-4 text-gray-600 mb-10 flex-grow">
+                            <!-- ATUALIZADO: Descrições -->
                             <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Página única (one-page)</li>
-                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Design responsivo</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Design responsivo (perfeito no celular)</li>
                             <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Botão de WhatsApp</li>
-                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Google Analytics</li>
-                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Domínio e hospedagem inclusos</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Google Analytics (saiba quem visita)</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Domínio e hospedagem (1 ano grátis)</li>
                         </ul>
                         <a href="#contato" class="mt-auto w-full text-center bg-gray-100 text-black px-6 py-3 rounded-md font-semibold hover:bg-gray-200 transition-colors">Quero este</a>
                     </div>
@@ -306,17 +350,25 @@
                     <div class="bg-black text-white border-2 border-highlight rounded-lg p-8 flex flex-col relative overflow-hidden reveal" style="transition-delay: 300ms;">
                         <span class="absolute top-0 right-0 bg-highlight text-black text-xs font-bold px-4 py-1 rounded-bl-lg">MAIS POPULAR</span>
                         <h3 class="text-2xl font-bold">Profissional</h3>
-                        <p class="text-gray-300 mt-2 mb-6">A ferramenta completa para captar clientes e se destacar.</p>
-                        <div class="mb-8">
+                        <p class="text-gray-300 mt-2">A ferramenta completa para captar clientes e se destacar.</p>
+                        <!-- ATUALIZADO: Prazo de Entrega -->
+                        <p class="text-sm text-gray-300 mt-2 font-medium">Prazo de entrega: 48h a 72h</p>
+                        <div class="my-6">
                             <p class="text-2xl text-gray-400 line-through">R$ 950</p>
                             <p class="text-4xl font-bold">R$ 650</p>
                         </div>
+                        <!-- ATUALIZADO: Timer da Promoção -->
+                        <div id="timer-profissional" class="promo-timer-dark">
+                            <span>A promoção termina em:</span>
+                            Carregando...
+                        </div>
                         <ul class="space-y-4 text-gray-200 mb-10 flex-grow">
+                             <!-- ATUALIZADO: Descrições -->
                             <li class="flex items-start font-bold"><svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Tudo do plano Essencial, e mais:</li>
-                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Otimização para SEO</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Otimização SEO (para ser achado no Google)</li>
                             <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Páginas dedicadas para projetos</li>
-                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Conexão com Google/Meta Ads</li>
-                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Integração com Instagram feed</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Conexão com Google/Meta Ads (anúncios)</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Integração com feed do Instagram</li>
                         </ul>
                         <a href="#contato" class="mt-auto w-full text-center bg-highlight text-black px-6 py-3 rounded-md font-semibold hover:bg-opacity-80 transition-colors">Quero este</a>
                     </div>
@@ -324,14 +376,21 @@
                     <!-- Plano Premium -->
                     <div class="bg-white border border-gray-200 rounded-lg p-8 flex flex-col reveal" style="transition-delay: 400ms;">
                         <h3 class="text-2xl font-bold">Premium</h3>
-                        <p class="text-gray-500 mt-2 mb-6">Uma experiência digital exclusiva e sob medida para sua marca.</p>
-                        <p class="text-4xl font-bold mb-8">R$ 2.500+</p>
-                        <ul class="space-y-4 text-gray-600 mb-10 flex-grow">
+                        <p class="text-gray-500 mt-2">Uma experiência digital exclusiva e sob medida.</p>
+                        <!-- ATUALIZADO: Prazo de Entrega -->
+                        <p class="text-sm text-gray-500 mt-2 font-medium">Prazo de entrega: A combinar</p>
+                        <div class="my-6">
+                            <p class="text-4xl font-bold">R$ 2.500+</p>
+                        </div>
+                        
+                        <!-- ATUALIZADO: Espaçamento (removido timer) -->
+                        <ul class="space-y-4 text-gray-600 mb-10 flex-grow mt-8 pt-1">
+                             <!-- ATUALIZADO: Descrições -->
                              <li class="flex items-start font-bold"><svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Tudo do plano Profissional, e mais:</li>
-                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Design 100% exclusivo</li>
-                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Blog integrado</li>
-                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Microanimações e interações</li>
-                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>E-mail profissional dedicado</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Design 100% exclusivo e sob medida</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Blog integrado (para artigos e notícias)</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Microanimações e interações avançadas</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>E-mail profissional (ex: contato@seusite.com)</li>
                             <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Suporte com o SAC em tempo integral</li>
                         </ul>
                         <a href="#contato" class="mt-auto w-full text-center bg-gray-100 text-black px-6 py-3 rounded-md font-semibold hover:bg-gray-200 transition-colors">Quero este</a>
@@ -340,8 +399,57 @@
             </div>
         </section>
         
-        <!-- Seção Portfólio (REORDENADA) -->
-        <section id="portfolio" class="py-24 bg-white">
+        <!-- --- NOVA SEÇÃO DE SUPORTE E MANUTENÇÃO --- -->
+        <section id="suporte" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Coluna de Imagem/Gráfico -->
+                    <div class="reveal">
+                        <img src="https://placehold.co/600x450/F8F8F8/B88A5A?text=Suporte+Dedicado" alt="Ilustração de suporte e manutenção de sites" class="rounded-lg shadow-md w-full h-full object-cover">
+                    </div>
+                    <!-- Coluna de Texto -->
+                    <div class="reveal" style="transition-delay: 200ms;">
+                        <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500">Parceria Contínua</h2>
+                        <p class="text-3xl md:text-4xl font-bold mt-2">Nós amparamos seu escritório em todos os aspectos.</p>
+                        <p class="mt-6 text-lg text-gray-600">
+                            Mais do que entregar um site, oferecemos a tranquilidade de que sua presença digital estará sempre atualizada e segura. Cuidamos da tecnologia para que você possa focar no que faz de melhor: arquitetura.
+                        </p>
+                        <ul class="space-y-5 mt-8">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-highlight/10 text-highlight-color flex items-center justify-center mr-4">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Contato Direto via WhatsApp</h4>
+                                    <p class="text-gray-600">Suporte ágil em horário comercial para tirar dúvidas ou solicitar ajustes rápidos.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-highlight/10 text-highlight-color flex items-center justify-center mr-4">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Atualização de Portfólio e Textos</h4>
+                                    <p class="text-gray-600">Terminou um projeto novo? Basta nos enviar o material e nós subimos no site para você.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-highlight/10 text-highlight-color flex items-center justify-center mr-4">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Manutenção Técnica e Segurança</h4>
+                                    <p class="text-gray-600">Monitoramos o site para garantir que ele esteja sempre online, rápido e seguro contra ameaças.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção Portfólio -->
+        <section id="portfolio" class="py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
                     <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 reveal">Portfólio</h2>
@@ -440,49 +548,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO DE DEPOIMENTOS ATUALIZADA -->
-        <section id="depoimentos" class="py-24">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 reveal">O que nossos parceiros dizem</h2>
-                    <p class="text-3xl md:text-4xl font-bold mt-2 reveal" style="transition-delay: 100ms;">Confiança que se traduz em resultados.</p>
-                </div>
-
-                <div class="relative max-w-4xl mx-auto reveal" style="transition-delay: 200ms;">
-                    <div id="slider-container" class="overflow-hidden rounded-lg shadow-lg border border-gray-200">
-                        <div id="slider" class="flex transition-transform duration-500 ease-in-out">
-                            
-                            <!-- Todos os 15 depoimentos adicionados -->
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“Trabalhar com a Forma Studio foi uma experiência tranquila. Eles cuidam de cada detalhe com uma atenção que nos surpreendeu. [...] Isso transmite extrema confiança.”</p><div class="mt-6"><p class="font-bold text-lg">Mariana Soares</p><p class="text-sm text-gray-500">Sócia-fundadora, Prisma Arquitetura — São Paulo (SP)</p></div></div>
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“O site que a Forma Studio criou aumentou nosso número de leads qualificados em 35%. [...] É raro encontrar uma equipe tão dedicada.”</p><div class="mt-6"><p class="font-bold text-lg">Rodrigo Lima</p><p class="text-sm text-gray-500">Diretor Criativo, Vértice Arquitetura — Belo Horizonte (MG)</p></div></div>
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“Mais do que resultados, o que impressiona é o cuidado da Forma Studio. [...] sentimos que cada etapa foi acompanhada de perto, com profissionalismo e paciência.”</p><div class="mt-6"><p class="font-bold text-lg">Camila Figueiredo</p><p class="text-sm text-gray-500">CEO, Lume Arquitetura — Florianópolis (SC)</p></div></div>
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“Depois que o site ficou pronto, conseguimos reduzir o tempo gasto apresentando nossos projetos em 40%. [...] funcional, eficiente e confiável.”</p><div class="mt-6"><p class="font-bold text-lg">Gustavo Tavares</p><p class="text-sm text-gray-500">Sócio, Cubo Arquitetura — Curitiba (PR)</p></div></div>
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“O atendimento da Forma Studio é impecável. Eles não deixam passar nenhum detalhe e realmente entendem nosso estilo e nossa visão.”</p><div class="mt-6"><p class="font-bold text-lg">Aline Pires</p><p class="text-sm text-gray-500">Diretora de Projetos, Horizonte Studio — Porto Alegre (RS)</p></div></div>
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“O site trouxe mais visibilidade [...], mas o que realmente marcou foi a Forma Studio em si. É raro encontrar esse nível de comprometimento.”</p><div class="mt-6"><p class="font-bold text-lg">Eduardo Machado</p><p class="text-sm text-gray-500">Sócio, ArqNova — Brasília (DF)</p></div></div>
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“A Forma Studio não só criou um site visualmente impressionante, como também facilitou todo o processo interno. Sentimos uma confiança enorme.”</p><div class="mt-6"><p class="font-bold text-lg">Beatriz Carvalho</p><p class="text-sm text-gray-500">Fundadora, Terraço Arquitetura — Rio de Janeiro (RJ)</p></div></div>
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“O site ficou limpo, moderno e funcional, mas o que realmente me impressionou foi o cuidado da Forma Studio. [...] nos trouxe segurança e tranquilidade.”</p><div class="mt-6"><p class="font-bold text-lg">Henrique Almeida</p><p class="text-sm text-gray-500">Diretor, Linha Arquitetura — Salvador (BA)</p></div></div>
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“Após a entrega, recebemos feedbacks de clientes elogiando a clareza e organização do site. [...] o suporte da Forma Studio é excepcional.”</p><div class="mt-6"><p class="font-bold text-lg">Patrícia Gonçalves</p><p class="text-sm text-gray-500">Sócia-fundadora, Studio Áurea — Recife (PE)</p></div></div>
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“O site aumentou a eficiência das nossas apresentações [...] o que realmente diferencia a Forma Studio é o cuidado com cada detalhe.”</p><div class="mt-6"><p class="font-bold text-lg">Rafael Nunes</p><p class="text-sm text-gray-500">Sócio-diretor, Prisma Urbana — Campinas (SP)</p></div></div>
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“Eles não só entregam sites bonitos, mas fazem com que a experiência seja impecável. Sempre atentos, respondendo rápido e pensando em soluções práticas.”</p><div class="mt-6"><p class="font-bold text-lg">Juliana Ribeiro</p><p class="text-sm text-gray-500">Diretora Executiva, Forma Livre Arquitetura — Belo Horizonte (MG)</p></div></div>
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“O site é responsivo, rápido e elegante, mas a Forma Studio trouxe algo ainda maior que é confiança. [...] Isso nos dá muita tranquilidade.”</p><div class="mt-6"><p class="font-bold text-lg">Carlos Eduardo Santos</p><p class="text-sm text-gray-500">Fundador, Estúdio Vertice — Vitória (ES)</p></div></div>
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“O resultado é mais do que satisfatório. [...] o que marca mesmo é a parceria com a Forma Studio. A atenção aos detalhes nos deixou confiantes.”</p><div class="mt-6"><p class="font-bold text-lg">Fernanda Lima</p><p class="text-sm text-gray-500">Sócia, Linha & Forma Arquitetura — Porto Alegre (RS)</p></div></div>
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“Além de entregar um site funcional [...], a Forma Studio fez com que todo o processo fosse simples e seguro. Sentimos total apoio em cada decisão.”</p><div class="mt-6"><p class="font-bold text-lg">Thiago Mendes</p><p class="text-sm text-gray-500">Diretor Criativo, ArqMov — Florianópolis (SC)</p></div></div>
-                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“Eles realmente entendem nosso trabalho. Cada projeto que adicionamos ao site é cuidado com atenção. A Forma Studio nos dá a confiança de que nosso portfólio está sempre no melhor padrão possível.”</p><div class="mt-6"><p class="font-bold text-lg">Aline Martins</p><p class="text-sm text-gray-500">Sócia-fundadora, Atelier Sol — São Paulo (SP)</p></div></div>
-
-                        </div>
-                    </div>
-                    <!-- Navigation -->
-                    <button id="prev-slide" class="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 bg-white rounded-full h-12 w-12 flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors z-10">
-                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                    </button>
-                    <button id="next-slide" class="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 bg-white rounded-full h-12 w-12 flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors z-10">
-                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Sobre Nós (REFORMULADA COM NOVO CONTEÚDO) -->
+        <!-- Seção Sobre Nós -->
         <section id="sobre" class="py-24 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
@@ -568,6 +634,85 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Seção Depoimentos -->
+        <section id="depoimentos" class="py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 reveal">O que nossos parceiros dizem</h2>
+                    <p class="text-3xl md:text-4xl font-bold mt-2 reveal" style="transition-delay: 100ms;">Confiança que se traduz em resultados.</p>
+                </div>
+
+                <div class="relative max-w-4xl mx-auto reveal" style="transition-delay: 200ms;">
+                    <div id="slider-container" class="overflow-hidden rounded-lg shadow-lg border border-gray-200">
+                        <div id="slider" class="flex transition-transform duration-500 ease-in-out">
+                            
+                            <!-- Todos os 15 depoimentos -->
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“Trabalhar com a Forma Studio foi uma experiência tranquila. Eles cuidam de cada detalhe com uma atenção que nos surpreendeu. [...] Isso transmite extrema confiança.”</p><div class="mt-6"><p class="font-bold text-lg">Mariana Soares</p><p class="text-sm text-gray-500">Sócia-fundadora, Prisma Arquitetura — São Paulo (SP)</p></div></div>
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“O site que a Forma Studio criou aumentou nosso número de leads qualificados em 35%. [...] É raro encontrar uma equipe tão dedicada.”</p><div class="mt-6"><p class="font-bold text-lg">Rodrigo Lima</p><p class="text-sm text-gray-500">Diretor Criativo, Vértice Arquitetura — Belo Horizonte (MG)</p></div></div>
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“Mais do que resultados, o que impressiona é o cuidado da Forma Studio. [...] sentimos que cada etapa foi acompanhada de perto, com profissionalismo e paciência.”</p><div class="mt-6"><p class="font-bold text-lg">Camila Figueiredo</p><p class="text-sm text-gray-500">CEO, Lume Arquitetura — Florianópolis (SC)</p></div></div>
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“Depois que o site ficou pronto, conseguimos reduzir o tempo gasto apresentando nossos projetos em 40%. [...] funcional, eficiente e confiável.”</p><div class="mt-6"><p class="font-bold text-lg">Gustavo Tavares</p><p class="text-sm text-gray-500">Sócio, Cubo Arquitetura — Curitiba (PR)</p></div></div>
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“O atendimento da Forma Studio é impecável. Eles não deixam passar nenhum detalhe e realmente entendem nosso estilo e nossa visão.”</p><div class="mt-6"><p class="font-bold text-lg">Aline Pires</p><p class="text-sm text-gray-500">Diretora de Projetos, Horizonte Studio — Porto Alegre (RS)</p></div></div>
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“O site trouxe mais visibilidade [...], mas o que realmente marcou foi a Forma Studio em si. É raro encontrar esse nível de comprometimento.”</p><div class="mt-6"><p class="font-bold text-lg">Eduardo Machado</p><p class="text-sm text-gray-500">Sócio, ArqNova — Brasília (DF)</p></div></div>
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“A Forma Studio não só criou um site visualmente impressionante, como também facilitou todo o processo interno. Sentimos uma confiança enorme.”</p><div class="mt-6"><p class="font-bold text-lg">Beatriz Carvalho</p><p class="text-sm text-gray-500">Fundadora, Terraço Arquitetura — Rio de Janeiro (RJ)</p></div></div>
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“O site ficou limpo, moderno e funcional, mas o que realmente me impressionou foi o cuidado da Forma Studio. [...] nos trouxe segurança e tranquilidade.”</p><div class="mt-6"><p class="font-bold text-lg">Henrique Almeida</p><p class="text-sm text-gray-500">Diretor, Linha Arquitetura — Salvador (BA)</p></div></div>
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“Após a entrega, recebemos feedbacks de clientes elogiando a clareza e organização do site. [...] o suporte da Forma Studio é excepcional.”</p><div class="mt-6"><p class="font-bold text-lg">Patrícia Gonçalves</p><p class="text-sm text-gray-500">Sócia-fundadora, Studio Áurea — Recife (PE)</p></div></div>
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“O site aumentou a eficiência das nossas apresentações [...] o que realmente diferencia a Forma Studio é o cuidado com cada detalhe.”</p><div class="mt-6"><p class="font-bold text-lg">Rafael Nunes</p><p class="text-sm text-gray-500">Sócio-diretor, Prisma Urbana — Campinas (SP)</p></div></div>
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“Eles não só entregam sites bonitos, mas fazem com que a experiência seja impecável. Sempre atentos, respondendo rápido e pensando em soluções práticas.”</p><div class="mt-6"><p class="font-bold text-lg">Juliana Ribeiro</p><p class="text-sm text-gray-500">Diretora Executiva, Forma Livre Arquitetura — Belo Horizonte (MG)</p></div></div>
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“O site é responsivo, rápido e elegante, mas a Forma Studio trouxe algo ainda maior que é confiança. [...] Isso nos dá muita tranquilidade.”</p><div class="mt-6"><p class="font-bold text-lg">Carlos Eduardo Santos</p><p class="text-sm text-gray-500">Fundador, Estúdio Vertice — Vitória (ES)</p></div></div>
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“O resultado é mais do que satisfatório. [...] o que marca mesmo é a parceria com a Forma Studio. A atenção aos detalhes nos deixou confiantes.”</p><div class="mt-6"><p class="font-bold text-lg">Fernanda Lima</p><p class="text-sm text-gray-500">Sócia, Linha & Forma Arquitetura — Porto Alegre (RS)</p></div></div>
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“Além de entregar um site funcional [...], a Forma Studio fez com que todo o processo fosse simples e seguro. Sentimos total apoio em cada decisão.”</p><div class="mt-6"><p class="font-bold text-lg">Thiago Mendes</p><p class="text-sm text-gray-500">Diretor Criativo, ArqMov — Florianópolis (SC)</p></div></div>
+                            <div class="w-full flex-shrink-0 p-8 md:p-12 bg-white text-center"><p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed">“Eles realmente entendem nosso trabalho. Cada projeto que adicionamos ao site é cuidado com atenção. A Forma Studio nos dá a confiança de que nosso portfólio está sempre no melhor padrão possível.”</p><div class="mt-6"><p class="font-bold text-lg">Aline Martins</p><p class="text-sm text-gray-500">Sócia-fundadora, Atelier Sol — São Paulo (SP)</p></div></div>
+
+                        </div>
+                    </div>
+                    <!-- Navigation -->
+                    <button id="prev-slide" class="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 bg-white rounded-full h-12 w-12 flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors z-10">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button id="next-slide" class="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 bg-white rounded-full h-12 w-12 flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors z-10">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- NOVA SEÇÃO DE PAGAMENTO --- -->
+        <section id="pagamento" class="py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 reveal">Pagamento Facilitado</h2>
+                    <p class="text-3xl md:text-4xl font-bold mt-2 reveal" style="transition-delay: 100ms;">Flexibilidade para iniciar seu projeto.</p>
+                </div>
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                    <!-- PIX -->
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 reveal" style="transition-delay: 200ms;">
+                        <i class="fa-brands fa-pix text-4xl highlight-color mb-4"></i>
+                        <h4 class="font-bold text-lg">PIX com 5% OFF</h4>
+                        <p class="text-gray-600 text-sm">Desconto especial para pagamento à vista.</p>
+                    </div>
+                    <!-- Cartão -->
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 reveal" style="transition-delay: 300ms;">
+                        <i class="fa-solid fa-credit-card text-4xl highlight-color mb-4"></i>
+                        <h4 class="font-bold text-lg">Até 12x sem Juros</h4>
+                        <p class="text-gray-600 text-sm">Parcele no cartão de crédito sem juros.</p>
+                    </div>
+                    <!-- Boleto -->
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 reveal" style="transition-delay: 400ms;">
+                        <i class="fa-solid fa-barcode text-4xl highlight-color mb-4"></i>
+                        <h4 class="font-bold text-lg">Boleto Bancário</h4>
+                        <p class="text-gray-600 text-sm">Praticidade no pagamento à vista.</p>
+                    </div>
+                    <!-- Nota Fiscal -->
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 reveal" style="transition-delay: 500ms;">
+                        <i class="fa-solid fa-receipt text-4xl highlight-color mb-4"></i>
+                        <h4 class="font-bold text-lg">Emitimos Nota Fiscal</h4>
+                        <p class="text-gray-600 text-sm">Total transparência e segurança para seu CNPJ.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- Seção CTA Final -->
         <section id="contato" class="py-24 bg-white">
@@ -580,9 +725,7 @@
                 </p>
                 <div class="mt-10 reveal" style="transition-delay: 400ms;">
                     <a href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Forma%20Studio%20e%20tenho%20interesse%20em%20criar%20um%20site%20para%20meu%20escrit%C3%B3rio." target="_blank" class="bg-black text-white px-8 py-4 rounded-md font-semibold hover:bg-gray-800 transition-transform hover:scale-105 inline-flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                        </svg>
+                        <i class="fa-brands fa-whatsapp text-xl mr-3"></i>
                         Falar pelo WhatsApp
                     </a>
                     <p class="text-sm text-gray-500 mt-4">Ou envie um e-mail para <a href="mailto:contato@formastudio.com.br" class="underline hover:text-black">contato@formastudio.com.br</a></p>
@@ -597,13 +740,13 @@
             <p class="text-sm text-gray-500">&copy; 2025 Forma Studio. Todos os direitos reservados.</p>
             <div class="flex space-x-4 mt-4 md:mt-0">
                 <a href="#" class="text-gray-500 hover:text-black transition-colors" aria-label="Instagram">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    <i class="fa-brands fa-instagram text-xl"></i>
                 </a>
             </div>
         </div>
     </footer>
 
-    <!-- Botão Flutuante de WhatsApp (CÓDIGO AJUSTADO) -->
+    <!-- Botão Flutuante de WhatsApp -->
     <div class="fixed bottom-6 right-6 z-50 group">
         <!-- Popup -->
         <div id="whatsapp-popup" class="whatsapp-popup-content">
@@ -646,7 +789,7 @@
 
         revealElements.forEach(el => observer.observe(el));
         
-        // Script para Pop-up do WhatsApp (AJUSTADO)
+        // Script para Pop-up do WhatsApp
         const whatsappPopup = document.getElementById('whatsapp-popup');
         const closePopupButton = document.getElementById('close-popup');
 
@@ -701,7 +844,7 @@
             statsObserver.observe(statsContainer);
         }
 
-        // === NOVO SCRIPT PARA SLIDER DE DEPOIMENTOS ===
+        // Script para Slider de Depoimentos
         const slider = document.getElementById('slider');
         if (slider) {
             const slides = slider.children;
@@ -725,16 +868,68 @@
                 updateSliderPosition();
             });
         }
+        
+        // --- NOVO SCRIPT PARA O TIMER DA PROMOÇÃO ---
+        function startCountdown(elementId, targetDate) {
+            const countdownElement = document.getElementById(elementId);
+            if (!countdownElement) return;
 
-        // === NOVO SCRIPT PARA O CANVAS DA HERO ===
+            const targetTime = new Date(targetDate).getTime();
+
+            const interval = setInterval(() => {
+                // Usamos a data atual do sistema do usuário
+                const now = new Date().getTime();
+                const distance = targetTime - now;
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    countdownElement.innerHTML = "<span>Promoção Encerrada</span>";
+                    countdownElement.style.backgroundColor = "#555"; // Tom cinza
+                    countdownElement.style.color = "#fff";
+                    return;
+                }
+
+                // Cálculos de tempo
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Formata os números para sempre terem dois dígitos
+                const fHours = hours.toString().padStart(2, '0');
+                const fMinutes = minutes.toString().padStart(2, '0');
+                const fSeconds = seconds.toString().padStart(2, '0');
+
+                // Atualiza o HTML
+                countdownElement.innerHTML = `
+                    <span>A promoção termina em:</span>
+                    ${days}d, ${fHours}h, ${fMinutes}m e ${fSeconds}s
+                `;
+            }, 1000);
+        }
+
+        // Define a data limite da promoção (Ano, Mês-1, Dia, Hora, Min, Seg)
+        // 4 de Novembro de 2025, às 23:59:59
+        // (Lembre-se que o mês em JS é 0-indexed, então Novembro = 10)
+        const promoEndDate = new Date(2025, 10, 4, 23, 59, 59);
+
+        // Inicia os contadores
+        document.addEventListener('DOMContentLoaded', () => {
+            startCountdown('timer-essencial', promoEndDate);
+            startCountdown('timer-profissional', promoEndDate);
+        });
+        
+        // --- FIM DO SCRIPT DO TIMER ---
+
+
+        // Script para o Canvas da Hero
         const heroCanvas = document.getElementById('hero-canvas');
         if (heroCanvas) {
             const ctx = heroCanvas.getContext('2d');
             let particlesArray;
             let animationFrameId;
 
-            // Cores baseadas na paleta do site (#1A1A1A, #B88A5A)
-            // MUDANÇA: Reduzida a opacidade para melhorar o contraste
+            // Cores baseadas na paleta do site
             const particleColor = 'rgba(184, 138, 90, 0.4)'; // highlight-color (alfa 0.4)
             const lineColor = 'rgba(26, 26, 26, 0.05)'; // Preto suave (alfa 0.05)
 
@@ -756,7 +951,7 @@
                 mouse.y = null;
             }
             window.addEventListener('mouseout', resetMouse);
-            heroCanvas.addEventListener('mouseleave', resetMouse); // Adicionar tb no canvas
+            heroCanvas.addEventListener('mouseleave', resetMouse);
 
             // Classe da Partícula
             class Particle {
@@ -841,7 +1036,6 @@
                         
                         if (distance < connectRadius / 1.5) { // /1.5 para menos linhas
                             opacityValue = 1 - (distance / (connectRadius / 2)); // /2 para fade mais rápido
-                            // MUDANÇA: Atualizado o valor base da opacidade
                             let strokeStyle = lineColor.replace('0.05', opacityValue < 0 ? 0 : opacityValue.toFixed(2));
                             
                             ctx.strokeStyle = strokeStyle;
