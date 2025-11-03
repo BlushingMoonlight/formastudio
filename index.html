@@ -133,8 +133,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1; /* Canvas fica na camada 1 */
-            background-color: #FFFFFF; /* Fundo branco original da seção */
+            z-index: 2; /* Alterado de 1 para 2 (para ficar sobre o overlay do vídeo) */
+            background-color: transparent; /* Alterado de #FFFFFF para transparent */
         }
         
         /* --- NOVO ESTILO PARA O TIMER DA PROMOÇÃO --- */
@@ -170,6 +170,34 @@
             font-weight: 400;
             opacity: 0.85;
             margin-bottom: 4px;
+        }
+
+        /* --- NOVO ESTILO PARA HIGHLIGHT AUTOMÁTICO (EFEITO GRIFAR) --- */
+        .auto-highlight {
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease-out;
+            z-index: 1; /* Garante que o texto fique acima do grifado */
+        }
+        .auto-highlight::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 60%; /* Altura do "grifado" */
+            bottom: 0;
+            left: 0;
+            background-color: rgba(184, 138, 90, 0.25); /* Cor #B88A5A com 25% de opacidade */
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: -1; /* Para ficar atrás do texto */
+        }
+        .auto-highlight.highlight-visible::after {
+            transform: scaleX(1);
+        }
+        /* Opcional: fazer o texto ficar um pouco mais escuro ao grifar */
+        .auto-highlight.highlight-visible {
+            color: #000; 
         }
     </style>
 </head>
@@ -216,13 +244,23 @@
         <!-- Seção Hero -->
         <section class="pt-32 pb-20 relative overflow-hidden bg-white">
             
+            <!-- VÍDEO DE FUNDO ADICIONADO -->
+            <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+                <source src="Assets/videob.mp4" type="video/mp4">
+                Seu navegador não suporta vídeos.
+            </video>
+            <!-- OVERLAY ADICIONADO (para escurecer o vídeo) -->
+            <div class="absolute top-0 left-0 w-full h-full bg-black/50 z-1"></div>
+            
+            <!-- Canvas (z-index atualizado no CSS para 2) -->
             <canvas id="hero-canvas"></canvas>
 
-            <div class="container mx-auto px-6 text-center relative z-10">
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight md:leading-snug max-w-4xl mx-auto reveal">
+            <!-- Conteúdo de Texto (z-index atualizado para 3) -->
+            <div class="container mx-auto px-6 text-center relative z-3">
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight md:leading-snug max-w-4xl mx-auto reveal text-white">
                     Sites que refletem a estética <br class="hidden md:block"> do seu <span class="highlight-color">estúdio de arquitetura.</span>
                 </h1>
-                <p class="mt-6 text-lg text-gray-600 max-w-2xl mx-auto reveal" style="transition-delay: 200ms;">
+                <p class="mt-6 text-lg text-gray-200 max-w-2xl mx-auto reveal" style="transition-delay: 200ms;">
                     Arquitetamos sua presença digital. Transformamos seu portfólio em uma poderosa ferramenta para atrair e converter os clientes certos.
                 </p>
                 <div class="mt-10 reveal" style="transition-delay: 400ms;">
@@ -231,6 +269,9 @@
                     </a>
                 </div>
             </div>
+            
+            <!-- FADE NA PARTE INFERIOR ADICIONADO -->
+            <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#F8F8F8] to-transparent z-4"></div>
         </section>
 
         <!-- Seção Importância do Site -->
@@ -238,9 +279,9 @@
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
                     <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 reveal">O Diferencial Digital</h2>
-                    <p class="text-3xl md:text-4xl font-bold mt-2 max-w-3xl mx-auto reveal" style="transition-delay: 100ms;">Seu site é o <span class="highlight-color">hall de entrada</span> oficial do seu trabalho.</p>
+                    <p class="text-3xl md:text-4xl font-bold mt-2 max-w-3xl mx-auto reveal" style="transition-delay: 100ms;">Seu site é o <span class="auto-highlight">hall de entrada oficial</span> do seu trabalho.</p>
                      <p class="mt-6 text-lg text-gray-600 max-w-3xl mx-auto reveal" style="transition-delay: 200ms;">
-                        Um grande projeto de arquitetura merece uma presença digital à sua altura. Mais do que um catálogo, seu site é o ponto de convergência da sua identidade e da captação de novos clientes.
+                        Um grande projeto de arquitetura merece uma <span class="auto-highlight">presença digital à sua altura</span>. Mais do que um catálogo, seu site é o ponto de convergência da sua identidade e da captação de novos clientes.
                     </p>
                 </div>
 
@@ -255,7 +296,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold">Controle a Narrativa</h4>
-                                    <p class="text-gray-600">Apresente seus projetos na sequência e com a narrativa que você definir, sem depender de algoritmos de redes sociais.</p>
+                                    <p class="text-gray-600">Apresente seus projetos na sequência e com a narrativa que você definir, <span class="auto-highlight">sem depender de algoritmos</span> de redes sociais.</p>
                                 </div>
                             </li>
                              <li class="flex items-start">
@@ -282,7 +323,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold">Apareça no Google</h4>
-                                    <p class="text-gray-600">Seja encontrado por quem busca por "escritório de arquitetura" na sua cidade, gerando visibilidade orgânica e constante.</p>
+                                    <p class="text-gray-600">Seja encontrado por quem busca por "escritório de arquitetura" na sua cidade, gerando <span class="auto-highlight">visibilidade orgânica e constante</span>.</p>
                                 </div>
                             </li>
                         </ul>
@@ -405,7 +446,8 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <!-- Coluna de Imagem/Gráfico -->
                     <div class="reveal">
-                        <img src="https://placehold.co/600x450/F8F8F8/B88A5A?text=Suporte+Dedicado" alt="Ilustração de suporte e manutenção de sites" class="rounded-lg shadow-md w-full h-full object-cover">
+                        <!-- IMAGEM ATUALIZADA -->
+                        <img src="Assets/imagema.jpg" alt="Equipe da Forma Studio oferecendo suporte dedicado" class="rounded-lg shadow-md w-full h-full object-cover">
                     </div>
                     <!-- Coluna de Texto -->
                     <div class="reveal" style="transition-delay: 200ms;">
@@ -555,7 +597,7 @@
                     <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 reveal">Sobre a Forma Studio</h2>
                     <p class="text-3xl md:text-4xl font-bold mt-2 reveal" style="transition-delay: 100ms;">Nós entendemos a linguagem da arquitetura.</p>
                     <p class="mt-6 text-gray-600 leading-relaxed max-w-4xl mx-auto reveal" style="transition-delay: 200ms;">
-                        A Forma Studio nasceu de uma percepção clara: grandes projetos de arquitetura merecem uma presença digital à sua altura. Nós não apenas criamos sites; traduzimos sua visão arquitetônica para o ambiente digital, combinando design com propósito e tecnologia de performance para construir uma ferramenta que gera confiança e atrai os clientes certos.
+                        A Forma Studio nasceu de uma percepção clara: grandes projetos de arquitetura merecem uma presença digital à sua altura. Nós não apenas criamos sites; traduzimos sua <span class="auto-highlight">visão arquitetônica para o ambiente digital</span>, combinando <span class="auto-highlight">design com propósito e tecnologia de performance</span> para construir uma ferramenta que gera confiança e atrai os clientes certos.
                     </p>
                 </div>
 
@@ -575,14 +617,14 @@
                                     <svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                     <div>
                                         <h4 class="font-semibold">Foco em clareza e ritmo</h4>
-                                        <p class="text-sm">Layouts limpos, tipografia elegante e navegação clara valorizam seus projetos, fazendo com que o visitante sinta imediatamente: “este escritório entende de design”.</p>
+                                        <p class="text-sm"><span class="auto-highlight">Layouts limpos, tipografia elegante</span> e navegação clara valorizam seus projetos, fazendo com que o visitante sinta imediatamente: “este escritório entende de design”.</p>
                                     </div>
                                 </li>
                                 <li class="flex items-start">
                                     <svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                     <div>
                                         <h4 class="font-semibold">Responsividade e mobile-primeiro</h4>
-                                        <p class="text-sm">Com mais de 57% do tráfego vindo de dispositivos móveis, a experiência móvel não é uma adaptação, mas o ponto de partida para uma interface de alta fidelidade em qualquer tela.</p>
+                                        <p class="text-sm">Com mais de 57% do tráfego vindo de dispositivos móveis, a experiência móvel não é uma adaptação, mas o <span class="auto-highlight">ponto de partida</span> para uma interface de alta fidelidade em qualquer tela.</p>
                                     </div>
                                 </li>
                                 <li class="flex items-start">
@@ -611,14 +653,14 @@
                                     <svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                     <div>
                                         <h4 class="font-semibold">Velocidade que converte</h4>
-                                        <p class="text-sm">Sites que carregam em até 3 segundos evitam a desistência de mais de 53% dos usuários. Otimizamos cada detalhe para que seu portfólio carregue de forma quase instantânea.</p>
+                                        <p class="text-sm"><span class="auto-highlight">Sites que carregam em até 3 segundos</span> evitam a desistência de mais de 53% dos usuários. Otimizamos cada detalhe para que seu portfólio carregue de forma quase instantânea.</p>
                                     </div>
                                 </li>
                                 <li class="flex items-start">
                                     <svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                     <div>
                                         <h4 class="font-semibold">SEO e performance técnica</h4>
-                                        <p class="text-sm">O Google favorece sites rápidos. Construímos com as melhores práticas de SEO (Core Web Vitals) para que você ganhe vantagem orgânica e seja encontrado por quem realmente importa.</p>
+                                        <p class="text-sm"><span class="auto-highlight">O Google favorece sites rápidos.</span> Construímos com as melhores práticas de SEO (Core Web Vitals) para que você ganhe vantagem orgânica e seja encontrado por quem realmente importa.</p>
                                     </div>
                                 </li>
                                 <li class="flex items-start">
@@ -672,7 +714,7 @@
                     </button>
                     <button id="next-slide" class="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 bg-white rounded-full h-12 w-12 flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors z-10">
                         <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </button>
+D                    </button>
                 </div>
             </div>
         </section>
@@ -724,7 +766,8 @@
                     Entre em contato para uma conversa sem compromisso. Vamos entender suas necessidades e desenhar a solução perfeita para o seu estúdio.
                 </p>
                 <div class="mt-10 reveal" style="transition-delay: 400ms;">
-                    <a href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Forma%20Studio%20e%20tenho%20interesse%20em%20criar%20um%20site%20para%20meu%20escrit%C3%B3rio." target="_blank" class="bg-black text-white px-8 py-4 rounded-md font-semibold hover:bg-gray-800 transition-transform hover:scale-105 inline-flex items-center">
+                    <!-- NÚMERO DE WHATSAPP ATUALIZADO ABAIXO -->
+                    <a href="https://wa.me/554137982826?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Forma%20Studio%20e%20tenho%20interesse%20em%20criar%20um%20site%20para%20meu%20escrit%C3%B3rio." target="_blank" class="bg-black text-white px-8 py-4 rounded-md font-semibold hover:bg-gray-800 transition-transform hover:scale-105 inline-flex items-center">
                         <i class="fa-brands fa-whatsapp text-xl mr-3"></i>
                         Falar pelo WhatsApp
                     </a>
@@ -755,7 +798,8 @@
             <p class="text-sm text-gray-600 mt-1">Olá! Precisa de ajuda ou quer tirar uma dúvida? Fale conosco.</p>
         </div>
         <!-- Botão -->
-        <a href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Forma%20Studio%20e%20tenho%20interesse%20em%20criar%20um%20site%20para%20meu%20escrit%C3%B3rio." target="_blank" class="forma-whatsapp-fab">
+        <!-- NÚMERO DE WHATSAPP ATUALIZADO ABAIXO -->
+        <a href="https://wa.me/554137982826?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Forma%20Studio%20e%20tenho%20interesse%20em%20criar%20um%20site%20para%20meu%20escrit%C3%B3rio." target="_blank" class="forma-whatsapp-fab">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
@@ -789,6 +833,24 @@
 
         revealElements.forEach(el => observer.observe(el));
         
+        // --- NOVO SCRIPT PARA HIGHLIGHT AUTOMÁTICO (EFEITO GRIFAR) ---
+        const highlightElements = document.querySelectorAll('.auto-highlight');
+        const highlightObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Adiciona a classe com um pequeno atraso para sincronizar melhor com o scroll
+                    setTimeout(() => {
+                        entry.target.classList.add('highlight-visible');
+                        highlightObserver.unobserve(entry.target); // Observa apenas uma vez
+                    }, 250); // Atraso de 250ms
+                }
+            });
+        }, { threshold: 0.8 }); // Ativa quando 80% do elemento estiver visível
+
+        highlightElements.forEach(el => highlightObserver.observe(el));
+        // --- FIM DO SCRIPT DE HIGHLIGHT ---
+
+
         // Script para Pop-up do WhatsApp
         const whatsappPopup = document.getElementById('whatsapp-popup');
         const closePopupButton = document.getElementById('close-popup');
