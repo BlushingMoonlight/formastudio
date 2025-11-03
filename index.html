@@ -175,9 +175,12 @@
         /* --- NOVO ESTILO PARA HIGHLIGHT AUTOMÁTICO (EFEITO GRIFAR) --- */
         .auto-highlight {
             position: relative;
-            display: inline-block;
+            display: inline; /* <-- MUDANÇA 3: Corrigido de inline-block para inline */
             transition: all 0.3s ease-out;
             z-index: 1; /* Garante que o texto fique acima do grifado */
+            /* MUDANÇA 3: Adicionado para corrigir o bug de quebra de linha */
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
         }
         .auto-highlight::after {
             content: '';
@@ -340,11 +343,11 @@
                                  <div class="text-center">
                                      <p id="stat-load-time" class="text-5xl font-bold highlight-color">0s</p>
                                      <p class="mt-2 text-gray-600">É o tempo máximo de carregamento antes que mais da metade dos usuários mobile abandonem a página.</p>
-                                </div>
+                                 </div>
                                  <div class="text-center">
                                      <p id="stat-impression-time" class="text-5xl font-bold highlight-color">0,00s</p>
                                      <p class="mt-2 text-gray-600">É o tempo que um visitante leva para formar uma primeira impressão sobre o seu design.</p>
-                                </div>
+                                 </div>
                              </div>
                         </div>
                     </div>
@@ -370,6 +373,8 @@
                         <div class="my-6">
                             <p class="text-2xl text-gray-400 line-through">R$ 550</p>
                             <p class="text-4xl font-bold text-highlight-color">R$ 380</p>
+                            <!-- MUDANÇA 4: Adicionado texto de pagamento -->
+                            <p class="text-sm text-gray-600 mt-2 font-medium">Pagamento único. Inclui suporte.</p>
                         </div>
                         <!-- ATUALIZADO: Timer da Promoção -->
                         <div id="timer-essencial" class="promo-timer">
@@ -397,6 +402,8 @@
                         <div class="my-6">
                             <p class="text-2xl text-gray-400 line-through">R$ 950</p>
                             <p class="text-4xl font-bold">R$ 650</p>
+                            <!-- MUDANÇA 4: Adicionado texto de pagamento -->
+                            <p class="text-sm text-gray-300 mt-2 font-medium">Pagamento único. Inclui suporte.</p>
                         </div>
                         <!-- ATUALIZADO: Timer da Promoção -->
                         <div id="timer-profissional" class="promo-timer-dark">
@@ -422,10 +429,12 @@
                         <p class="text-sm text-gray-500 mt-2 font-medium">Prazo de entrega: A combinar</p>
                         <div class="my-6">
                             <p class="text-4xl font-bold">R$ 2.500+</p>
+                            <!-- MUDANÇA 4: Adicionado texto de pagamento -->
+                            <p class="text-sm text-gray-600 mt-2 font-medium">Pagamento único. Inclui suporte.</p>
                         </div>
                         
-                        <!-- ATUALIZADO: Espaçamento (removido timer) -->
-                        <ul class="space-y-4 text-gray-600 mb-10 flex-grow mt-8 pt-1">
+                        <!-- MUDANÇA 4: Espaçamento (removido mt-8 pt-1) -->
+                        <ul class="space-y-4 text-gray-600 mb-10 flex-grow">
                              <!-- ATUALIZADO: Descrições -->
                              <li class="flex items-start font-bold"><svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Tudo do plano Profissional, e mais:</li>
                             <li class="flex items-start"><svg class="w-5 h-5 mr-3 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Design 100% exclusivo e sob medida</li>
@@ -440,243 +449,79 @@
             </div>
         </section>
         
-        <!-- --- NOVA SEÇÃO DE SUPORTE E MANUTENÇÃO --- -->
-        <section id="suporte" class="py-24 bg-white">
+        <!-- --- NOVA SEÇÃO DE TECNOLOGIA E CÓDIGO --- -->
+        <section id="tecnologia" class="py-24">
             <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 reveal">Desenvolvimento de Ponta</h2>
+                    <p class="text-3xl md:text-4xl font-bold mt-2 max-w-3xl mx-auto reveal" style="transition-delay: 100ms;">Não usamos templates. <span class="auto-highlight">Nós codificamos performance.</span></p>
+                    <p class="mt-6 text-lg text-gray-600 max-w-3xl mx-auto reveal" style="transition-delay: 200ms;">
+                        Enquanto a maioria usa "sites prontos" (templates), nós construímos cada projeto do zero. Seu site é <span class="auto-highlight">desenvolvido à mão por programadores profissionais</span>, resultando em uma performance, segurança e exclusividade que templates não podem oferecer.
+                    </p>
+                </div>
+                
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <!-- Coluna de Imagem/Gráfico -->
-                    <div class="reveal">
-                        <!-- IMAGEM ATUALIZADA -->
-                        <img src="Assets/imagema.jpg" alt="Equipe da Forma Studio oferecendo suporte dedicado" class="rounded-lg shadow-md w-full h-full object-cover">
-                    </div>
-                    <!-- Coluna de Texto -->
-                    <div class="reveal" style="transition-delay: 200ms;">
-                        <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500">Parceria Contínua</h2>
-                        <p class="text-3xl md:text-4xl font-bold mt-2">Nós amparamos seu escritório em todos os aspectos.</p>
-                        <p class="mt-6 text-lg text-gray-600">
-                            Mais do que entregar um site, oferecemos a <span class="auto-highlight">tranquilidade de que sua presença digital</span> estará sempre atualizada e segura. <span class="auto-highlight">Cuidamos da tecnologia</span> para que você possa focar no que faz de melhor: arquitetura.
-                        </p>
-                        <ul class="space-y-5 mt-8">
+                    <!-- Coluna de Texto Técnico -->
+                    <div class="reveal" style="transition-delay: 300ms;">
+                        <h3 class="text-2xl font-bold mb-6">Nosso arsenal tecnológico:</h3>
+                        <ul class="space-y-6">
                             <li class="flex items-start">
                                 <div class="flex-shrink-0 h-8 w-8 rounded-full bg-highlight/10 text-highlight-color flex items-center justify-center mr-4">
-                                    <i class="fa-brands fa-whatsapp"></i>
+                                    <i class="fa-solid fa-code"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold">Contato Direto via WhatsApp</h4>
-                                    <p class="text-gray-600">Suporte ágil em horário comercial para tirar dúvidas ou solicitar ajustes rápidos.</p>
+                                    <h4 class="font-bold">Código Limpo e Moderno</h4>
+                                    <p class="text-gray-600">Usamos HTML5 semântico, CSS3 e JavaScript (ES6+) para criar sites leves, rápidos e fáceis de indexar pelo Google.</p>
                                 </div>
                             </li>
-                             <li class="flex items-start">
+                            <li class="flex items-start">
                                 <div class="flex-shrink-0 h-8 w-8 rounded-full bg-highlight/10 text-highlight-color flex items-center justify-center mr-4">
-                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <i class="fa-solid fa-bolt"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold">Atualização de Portfólio e Textos</h4>
-                                    <p class="text-gray-600">Terminou um projeto novo? Basta nos enviar o material e <span class="auto-highlight">nós subimos no site para você</span>.</p>
+                                    <h4 class="font-bold">Foco nos Core Web Vitals</h4>
+                                    <p class="text-gray-600">Otimizamos o carregamento (LCP), interatividade (FID) e estabilidade visual (CLS) para garantir a <span class="auto-highlight">melhor nota de performance no Google</span>.</p>
                                 </div>
                             </li>
-                             <li class="flex items-start">
+                            <li class="flex items-start">
                                 <div class="flex-shrink-0 h-8 w-8 rounded-full bg-highlight/10 text-highlight-color flex items-center justify-center mr-4">
-                                    <i class="fa-solid fa-shield-halved"></i>
+                                    <i class="fa-solid fa-shield-alt"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold">Manutenção Técnica e Segurança</h4>
-                                    <p class="text-gray-600">Monitoramos o site para garantir que ele esteja <span class="auto-highlight">sempre online, rápido e seguro</span> contra ameaças.</p>
+                                    <h4 class="font-bold">Segurança e Acessibilidade (WAI-ARIA)</h4>
+                                    <p class="text-gray-600">Implementamos práticas de segurança robustas e seguimos as diretrizes de acessibilidade para que <span class="auto-highlight">todos os usuários</span> possam navegar no seu site.</p>
                                 </div>
                             </li>
                         </ul>
                     </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Seção Portfólio -->
-        <section id="portfolio" class="py-24">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 reveal">Portfólio</h2>
-                    <p class="text-3xl md:text-4xl font-bold mt-2 max-w-2xl mx-auto reveal" style="transition-delay: 100ms;">Projetos que unem forma e função no ambiente digital.</p>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Projeto 1 -->
-                    <div class="group reveal" style="transition-delay: 200ms;">
-                        <div class="bg-gray-100 rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
-                            <img src="https://placehold.co/600x600/F8F8F8/1A1A1A?text=Casa+Vitra" alt="Projeto de site para escritório de arquitetura residencial" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="text-xl font-semibold">Casa Vitra | Arquitetura</h3>
-                            <p class="text-gray-500 mt-1">Foco em visual limpo, grandes imagens e experiência imersiva.</p>
-                        </div>
-                    </div>
-
-                    <!-- Projeto 2 -->
-                    <div class="group reveal" style="transition-delay: 300ms;">
-                        <div class="bg-gray-100 rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
-                            <img src="https://placehold.co/600x600/1A1A1A/F8F8F8?text=Studio+Plano" alt="Projeto de site para estúdio de interiores" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="text-xl font-semibold">Studio Plano | Interiores</h3>
-                            <p class="text-gray-500 mt-1">Design minimalista que valoriza a sofisticação dos projetos.</p>
-                        </div>
-                    </div>
                     
-                    <!-- Projeto 3 -->
-                    <div class="group reveal" style="transition-delay: 400ms;">
-                        <div class="bg-gray-100 rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
-                            <img src="https://placehold.co/600x600/B88A5A/FFFFFF?text=Linha+Autoral" alt="Projeto de site para arquiteto autoral" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="text-xl font-semibold">Linha | Arquiteto Autoral</h3>
-                            <p class="text-gray-500 mt-1">Navegação intuitiva e portfólio organizado por categorias.</p>
-                        </div>
-                    </div>
-
-                    <!-- Projeto 4 -->
-                    <div class="group reveal" style="transition-delay: 500ms;">
-                        <div class="bg-gray-100 rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
-                            <img src="https://placehold.co/600x600/e0e0e0/333333?text=Urbe+Corp" alt="Projeto de site para arquitetura corporativa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="text-xl font-semibold">Urbe | Arquitetura Corp.</h3>
-                            <p class="text-gray-500 mt-1">Comunicação visual sóbria e foco em resultados comerciais.</p>
-                        </div>
-                    </div>
-
-                    <!-- Projeto 5 -->
-                    <div class="group reveal" style="transition-delay: 200ms;">
-                        <div class="bg-gray-100 rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
-                            <img src="https://placehold.co/600x600/333333/ffffff?text=Refúgio" alt="Projeto de site para arquitetura de refúgios e cabanas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="text-xl font-semibold">Refúgio | Casas de Campo</h3>
-                            <p class="text-gray-500 mt-1">Site que transmite aconchego e conexão com a natureza.</p>
-                        </div>
-                    </div>
-
-                    <!-- Projeto 6 -->
-                    <div class="group reveal" style="transition-delay: 300ms;">
-                        <div class="bg-gray-100 rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
-                            <img src="https://placehold.co/600x600/f0f0f0/B88A5A?text=Vértice" alt="Projeto de site para edifícios e urbanismo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="text-xl font-semibold">Vértice | Urbanismo</h3>
-                            <p class="text-gray-500 mt-1">Plataforma robusta para exibição de projetos de larga escala.</p>
-                        </div>
-                    </div>
-
-                    <!-- Projeto 7 -->
-                    <div class="group reveal" style="transition-delay: 400ms;">
-                        <div class="bg-gray-100 rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
-                            <img src="https://placehold.co/600x600/ffffff/1A1A1A?text=Ângulo" alt="Projeto de site para design de interiores comerciais" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="text-xl font-semibold">Ângulo | Interiores Comerciais</h3>
-                            <p class="text-gray-500 mt-1">Design arrojado para atrair clientes para lojas e escritórios.</p>
-                        </div>
-                    </div>
-
-                    <!-- Projeto 8 -->
-                    <div class="group reveal" style="transition-delay: 500ms;">
-                        <div class="bg-gray-100 rounded-lg overflow-hidden aspect-w-1 aspect-h-1">
-                            <img src="https://placehold.co/600x600/1A1A1A/B88A5A?text=Traço+Fino" alt="Projeto de site para arquiteto de alto padrão" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="text-xl font-semibold">Traço Fino | Alto Padrão</h3>
-                            <p class="text-gray-500 mt-1">Elegância e exclusividade em cada detalhe do layout.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Sobre Nós -->
-        <section id="sobre" class="py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 reveal">Sobre a Forma Studio</h2>
-                    <p class="text-3xl md:text-4xl font-bold mt-2 reveal" style="transition-delay: 100ms;">Nós entendemos a linguagem da arquitetura.</p>
-                    <p class="mt-6 text-gray-600 leading-relaxed max-w-4xl mx-auto reveal" style="transition-delay: 200ms;">
-                        A Forma Studio nasceu de uma percepção clara: grandes projetos de arquitetura merecem uma presença digital à sua altura. Nós não apenas criamos sites; traduzimos sua <span class="auto-highlight">visão arquitetônica para o ambiente digital</span>, combinando <span class="auto-highlight">design com propósito e tecnologia de performance</span> para construir uma ferramenta que gera confiança e atrai os clientes certos.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mt-12">
-                    <!-- Coluna 1: Design com Propósito -->
-                    <div class="reveal" style="transition-delay: 300ms;">
-                        <div class="bg-white rounded-lg p-8 border border-gray-200 h-full flex flex-col">
-                            <div class="flex items-center mb-6">
-                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-highlight/10 text-highlight-color flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
-                                </div>
-                                <h3 class="text-2xl font-bold ml-4">Design com Propósito</h3>
-                            </div>
-                            <p class="text-gray-600 mb-6">Para um escritório de arquitetura, cada detalhe conta. Por isso, criamos sites que geram uma primeira impressão de impacto e constroem credibilidade instantaneamente.</p>
-                            <ul class="space-y-5 text-gray-600 flex-grow">
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                    <div>
-                                        <h4 class="font-semibold">Foco em clareza e ritmo</h4>
-                                        <p class="text-sm"><span class="auto-highlight">Layouts limpos, tipografia elegante</span> e navegação clara valorizam seus projetos, fazendo com que o visitante sinta imediatamente: “este escritório entende de design”.</p>
-                                    </div>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                    <div>
-                                        <h4 class="font-semibold">Responsividade e mobile-primeiro</h4>
-                                        <p class="text-sm">Com mais de 57% do tráfego vindo de dispositivos móveis, a experiência móvel não é uma adaptação, mas o <span class="auto-highlight">ponto de partida</span> para uma interface de alta fidelidade em qualquer tela.</p>
-                                    </div>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                    <div>
-                                        <h4 class="font-semibold">Identidade visual alinhada</h4>
-                                        <p class="text-sm">O site não é um template. Ele é construído para refletir a estética, os valores e o público-alvo do seu estúdio, garantindo que sua presença digital seja tão singular quanto seus projetos.</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Coluna 2: Tecnologia e Performance -->
+                    <!-- Coluna do "Print" do Código -->
                     <div class="reveal" style="transition-delay: 500ms;">
-                        <div class="bg-white rounded-lg p-8 border border-gray-200 h-full flex flex-col">
-                             <div class="flex items-center mb-6">
-                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-highlight/10 text-highlight-color flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                                </div>
-                                <h3 class="text-2xl font-bold ml-4">Tecnologia e Performance</h3>
-                            </div>
-                            <p class="text-gray-600 mb-6">Um design incrível precisa de uma base técnica sólida. Focamos em performance que converte visitantes em clientes e posiciona seu estúdio para o sucesso.</p>
-                             <ul class="space-y-5 text-gray-600 flex-grow">
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                    <div>
-                                        <h4 class="font-semibold">Velocidade que converte</h4>
-                                        <p class="text-sm"><span class="auto-highlight">Sites que carregam em até 3 segundos</span> evitam a desistência de mais de 53% dos usuários. Otimizamos cada detalhe para que seu portfólio carregue de forma quase instantânea.</p>
-                                    </div>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                    <div>
-                                        <h4 class="font-semibold">SEO e performance técnica</h4>
-                                        <p class="text-sm"><span class="auto-highlight">O Google favorece sites rápidos.</span> Construímos com as melhores práticas de SEO (Core Web Vitals) para que você ganhe vantagem orgânica e seja encontrado por quem realmente importa.</p>
-                                    </div>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                    <div>
-                                        <h4 class="font-semibold">Dados para refinar a estratégia</h4>
-                                        <p class="text-sm">Integramos ferramentas de análise para que você saiba de onde vêm seus visitantes e o que eles buscam. Isso transforma seu site em um instrumento de prospecção ativa.</p>
-                                    </div>
-                                </li>
-                            </ul>
+                        <div class="bg-gray-900 rounded-lg p-4 md:p-6 shadow-2xl overflow-auto text-left text-xs md:text-sm">
+                            <pre><code class="language-html text-gray-300"><span class="text-gray-500">&lt;!-- Código semântico e otimizado --&gt;</span>
+
+&lt;<span class="text-red-400">section</span> <span class="text-blue-300">id</span>="<span class="text-yellow-300">portfolio</span>" <span class="text-blue-300">aria-label</span>="<span class="text-yellow-300">Portfólio</span>"&gt;
+  
+  &lt;<span class="text-red-400">div</span> <span class="text-blue-300">class</span>="<span class="text-yellow-300">grid-container</span>"&gt;
+    &lt;<span class="text-red-400">article</span> <span class="text-blue-300">class</span>="<span class="text-yellow-300">project-card</span>"&gt;
+      &lt;<span class="text-red-400">img</span> 
+         <span class="text-blue-300">src</span>="<span class="text-yellow-300">/img/projeto-1.webp</span>"
+         <span class="text-blue-300">alt</span>="<span class="text-yellow-300">Descrição acessível do projeto</span>"
+         <span class="text-blue-300">loading</span>="<span class="text-yellow-300">lazy</span>"
+         <span class="text-blue-300">width</span>="<span class="text-yellow-300">600</span>" <span class="text-blue-300">height</span>="<span class="text-yellow-300">600</span>"
+      /&gt;
+      &lt;<span class="text-red-400">h3</span>&gt;Casa Vitra&lt;/<span class="text-red-400">h3</span>&gt;
+    &lt;/<span class="text-red-400">article</span>&gt;
+  &lt;/<span class="text-red-400">div</span>&gt;
+
+&lt;/<span class="text-red-400">section</span>&gt;</code></pre>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+        <!-- --- FIM DA NOVA SEÇÃO --- -->
+
         <!-- Seção Depoimentos -->
         <section id="depoimentos" class="py-24">
             <div class="container mx-auto px-6">
@@ -712,9 +557,10 @@
                     <button id="prev-slide" class="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 bg-white rounded-full h-12 w-12 flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors z-10">
                         <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     </button>
+                    <!-- MUDANÇA 2: Removido o "D" aleatório -->
                     <button id="next-slide" class="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 bg-white rounded-full h-12 w-12 flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors z-10">
                         <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-D                    </button>
+                    </button>
                 </div>
             </div>
         </section>
@@ -771,7 +617,8 @@ D                    </button>
                         <i class="fa-brands fa-whatsapp text-xl mr-3"></i>
                         Falar pelo WhatsApp
                     </a>
-                    <p class="text-sm text-gray-500 mt-4">Ou envie um e-mail para <a href="mailto:contato@formastudio.com.br" class="underline hover:text-black">contato@formastudio.com.br</a></p>
+                    <!-- MUDANÇA 1: Email corrigido -->
+                    <p class="text-sm text-gray-500 mt-4">Ou envie um e-mail para <a href="mailto:contato@formastudioweb.com.br" class="underline hover:text-black">contato@formastudioweb.com.br</a></p>
                 </div>
             </div>
         </section>
