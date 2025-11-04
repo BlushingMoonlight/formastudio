@@ -939,7 +939,9 @@
                     }, 250); // Atraso de 250ms
                 }
             });
-        }, { threshold: 0.8 }); // Ativa quando 80% do elemento estiver visível
+        }, { 
+            threshold: 0.1 // <-- ALTERADO de 0.8 para 0.1 para melhor detecção mobile
+        }); 
 
         highlightElements.forEach(el => highlightObserver.observe(el));
         // --- FIM DO SCRIPT DE HIGHLIGHT ---
