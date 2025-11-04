@@ -178,36 +178,8 @@
             margin-bottom: 4px;
         }
 
-        /* --- NOVO ESTILO PARA HIGHLIGHT AUTOMÁTICO (EFEITO GRIFAR) --- */
-        .auto-highlight {
-            position: relative;
-            display: inline; /* <-- MUDANÇA 3: Corrigido de inline-block para inline */
-            transition: all 0.3s ease-out;
-            z-index: 1; /* Garante que o texto fique acima do grifado */
-            /* MUDANÇA 3: Adicionado para corrigir o bug de quebra de linha */
-            box-decoration-break: clone;
-            -webkit-box-decoration-break: clone;
-        }
-        .auto-highlight::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 60%; /* Altura do "grifado" */
-            bottom: 0;
-            left: 0;
-            background-color: rgba(184, 138, 90, 0.25); /* Cor #B88A5A com 25% de opacidade */
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            z-index: -1; /* Para ficar atrás do texto */
-        }
-        .auto-highlight.highlight-visible::after {
-            transform: scaleX(1);
-        }
-        /* Opcional: fazer o texto ficar um pouco mais escuro ao grifar */
-        .auto-highlight.highlight-visible {
-            color: #000; 
-        }
+        /* --- ESTILO DE HIGHLIGHT REMOVIDO --- */
+
     </style>
 </head>
 <body class="antialiased">
@@ -264,8 +236,8 @@
             <!-- Canvas (z-index atualizado no CSS para 2) -->
             <canvas id="hero-canvas"></canvas>
 
-            <!-- Conteúdo de Texto (z-index atualizado para 3) -->
-            <div class="container mx-auto px-6 text-center relative z-3">
+            <!-- Conteúdo de Texto (z-index ATUALIZADO de z-3 para z-10) -->
+            <div class="container mx-auto px-6 text-center relative z-10">
                 <h1 class="text-4xl md:text-6xl font-bold leading-tight md:leading-snug max-w-4xl mx-auto reveal text-white">
                     Sites que refletem a estética <br class="hidden md:block"> do seu <span class="highlight-color">estúdio de arquitetura.</span>
                 </h1>
@@ -279,7 +251,7 @@
                 </div>
             </div>
             
-            <!-- FADE NA PARTE INFERIOR ADICIONADO -->
+            <!-- FADE NA PARTE INFERIOR (z-4) -->
             <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#F8F8F8] to-transparent z-4"></div>
         </section>
 
@@ -288,9 +260,11 @@
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
                     <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 reveal">O Diferencial Digital</h2>
-                    <p class="text-3xl md:text-4xl font-bold mt-2 max-w-3xl mx-auto reveal" style="transition-delay: 100ms;">Seu site é o <span class="auto-highlight">hall de entrada oficial</span> do seu trabalho.</p>
+                    <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                    <p class="text-3xl md:text-4xl font-bold mt-2 max-w-3xl mx-auto reveal" style="transition-delay: 100ms;">Seu site é o <span class="font-bold">hall de entrada oficial</span> do seu trabalho.</p>
                      <p class="mt-6 text-lg text-gray-600 max-w-3xl mx-auto reveal" style="transition-delay: 200ms;">
-                        Um grande projeto de arquitetura merece uma <span class="auto-highlight">presença digital à sua altura</span>. Mais do que um catálogo, seu site é o ponto de convergência da sua identidade e da captação de novos clientes.
+                        <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                        Um grande projeto de arquitetura merece uma <span class="font-bold">presença digital à sua altura</span>. Mais do que um catálogo, seu site é o ponto de convergência da sua identidade e da captação de novos clientes.
                     </p>
                 </div>
 
@@ -305,7 +279,8 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold">Controle a Narrativa</h4>
-                                    <p class="text-gray-600">Apresente seus projetos na sequência e com a narrativa que você definir, <span class="auto-highlight">sem depender de algoritmos</span> de redes sociais.</p>
+                                    <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                                    <p class="text-gray-600">Apresente seus projetos na sequência e com a narrativa que você definir, <span class="font-bold">sem depender de algoritmos</span> de redes sociais.</p>
                                 </div>
                             </li>
                              <li class="flex items-start">
@@ -332,7 +307,8 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold">Apareça no Google</h4>
-                                    <p class="text-gray-600">Seja encontrado por quem busca por "escritório de arquitetura" na sua cidade, gerando <span class="auto-highlight">visibilidade orgânica e constante</span>.</p>
+                                    <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                                    <p class="text-gray-600">Seja encontrado por quem busca por "escritório de arquitetura" na sua cidade, gerando <span class="font-bold">visibilidade orgânica e constante</span>.</p>
                                 </div>
                             </li>
                         </ul>
@@ -469,7 +445,8 @@
                         <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500">Parceria Contínua</h2>
                         <p class="text-3xl md:text-4xl font-bold mt-2">Nós amparamos seu escritório em todos os aspectos.</p>
                         <p class="mt-6 text-lg text-gray-600">
-                            Mais do que entregar um site, oferecemos a <span class="auto-highlight">tranquilidade de que sua presença digital</span> estará sempre atualizada e segura. <span class="auto-highlight">Cuidamos da tecnologia</span> para que você possa focar no que faz de melhor: arquitetura.
+                            <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                            Mais do que entregar um site, oferecemos a <span class="font-bold">tranquilidade de que sua presença digital</span> estará sempre atualizada e segura. <span class="font-bold">Cuidamos da tecnologia</span> para que você possa focar no que faz de melhor: arquitetura.
                         </p>
                         <ul class="space-y-5 mt-8">
                             <li class="flex items-start">
@@ -487,7 +464,8 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold">Atualização de Portfólio e Textos</h4>
-                                    <p class="text-gray-600">Terminou um projeto novo? Basta nos enviar o material e <span class="auto-highlight">nós subimos no site para você</span>.</p>
+                                    <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                                    <p class="text-gray-600">Terminou um projeto novo? Basta nos enviar o material e <span class="font-bold">nós subimos no site para você</span>.</p>
                                 </div>
                             </li>
                              <li class="flex items-start">
@@ -496,7 +474,8 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold">Manutenção Técnica e Segurança</h4>
-                                    <p class="text-gray-600">Monitoramos o site para garantir que ele esteja <span class="auto-highlight">sempre online, rápido e seguro</span> contra ameaças.</p>
+                                    <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                                    <p class="text-gray-600">Monitoramos o site para garantir que ele esteja <span class="font-bold">sempre online, rápido e seguro</span> contra ameaças.</p>
                                 </div>
                             </li>
                         </ul>
@@ -615,7 +594,8 @@
                     <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 reveal">Sobre a Forma Studio</h2>
                     <p class="text-3xl md:text-4xl font-bold mt-2 reveal" style="transition-delay: 100ms;">Nós entendemos a linguagem da arquitetura.</p>
                     <p class="mt-6 text-gray-600 leading-relaxed max-w-4xl mx-auto reveal" style="transition-delay: 200ms;">
-                        A Forma Studio nasceu de uma percepção clara: grandes projetos de arquitetura merecem uma presença digital à sua altura. Nós não apenas criamos sites; traduzimos sua <span class="auto-highlight">visão arquitetônica para o ambiente digital</span>, combinando <span class="auto-highlight">design com propósito e tecnologia de performance</span> para construir uma ferramenta que gera confiança e atrai os clientes certos.
+                        <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                        A Forma Studio nasceu de uma percepção clara: grandes projetos de arquitetura merecem uma presença digital à sua altura. Nós não apenas criamos sites; traduzimos sua <span class="font-bold">visão arquitetônica para o ambiente digital</span>, combinando <span class="font-bold">design com propósito e tecnologia de performance</span> para construir uma ferramenta que gera confiança e atrai os clientes certos.
                     </p>
                 </div>
 
@@ -635,14 +615,16 @@
                                     <svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                     <div>
                                         <h4 class="font-semibold">Foco em clareza e ritmo</h4>
-                                        <p class="text-sm"><span class="auto-highlight">Layouts limpos, tipografia elegante</span> e navegação clara valorizam seus projetos, fazendo com que o visitante sinta imediatamente: “este escritório entende de design”.</p>
+                                        <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                                        <p class="text-sm"><span class="font-bold">Layouts limpos, tipografia elegante</span> e navegação clara valorizam seus projetos, fazendo com que o visitante sinta imediatamente: “este escritório entende de design”.</p>
                                     </div>
                                 </li>
                                 <li class="flex items-start">
                                     <svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                     <div>
                                         <h4 class="font-semibold">Responsividade e mobile-primeiro</h4>
-                                        <p class="text-sm">Com mais de 57% do tráfego vindo de dispositivos móveis, a experiência móvel não é uma adaptação, mas o <span class="auto-highlight">ponto de partida</span> para uma interface de alta fidelidade em qualquer tela.</p>
+                                        <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                                        <p class="text-sm">Com mais de 57% do tráfego vindo de dispositivos móveis, a experiência móvel não é uma adaptação, mas o <span class="font-bold">ponto de partida</span> para uma interface de alta fidelidade em qualquer tela.</p>
                                     </div>
                                 </li>
                                 <li class="flex items-start">
@@ -671,14 +653,16 @@
                                     <svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                     <div>
                                         <h4 class="font-semibold">Velocidade que converte</h4>
-                                        <p class="text-sm"><span class="auto-highlight">Sites que carregam em até 3 segundos</span> evitam a desistência de mais de 53% dos usuários. Otimizamos cada detalhe para que seu portfólio carregue de forma quase instantânea.</p>
+                                        <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                                        <p class="text-sm"><span class="font-bold">Sites que carregam em até 3 segundos</span> evitam a desistência de mais de 53% dos usuários. Otimizamos cada detalhe para que seu portfólio carregue de forma quase instantânea.</p>
                                     </div>
                                 </li>
                                 <li class="flex items-start">
                                     <svg class="w-5 h-5 mr-3 text-highlight-color flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                     <div>
                                         <h4 class="font-semibold">SEO e performance técnica</h4>
-                                        <p class="text-sm"><span class="auto-highlight">O Google favorece sites rápidos.</span> Construímos com as melhores práticas de SEO (Core Web Vitals) para que você ganhe vantagem orgânica e seja encontrado por quem realmente importa.</p>
+                                        <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                                        <p class="text-sm"><span class="font-bold">O Google favorece sites rápidos.</span> Construímos com as melhores práticas de SEO (Core Web Vitals) para que você ganhe vantagem orgânica e seja encontrado por quem realmente importa.</p>
                                     </div>
                                 </li>
                                 <li class="flex items-start">
@@ -703,7 +687,8 @@
                     <!-- MUDANÇA: Removido o span.auto-highlight -->
                     <p class="text-3xl md:text-4xl font-bold mt-2 max-w-3xl mx-auto reveal" style="transition-delay: 100ms;">Não usamos templates. Nós codificamos performance.</p>
                     <p class="mt-6 text-lg text-gray-600 max-w-3xl mx-auto reveal" style="transition-delay: 200ms;">
-                        Enquanto a maioria usa "sites prontos" (templates), nós construímos cada projeto do zero. Seu site é <span class="auto-highlight">desenvolvido à mão por programadores profissionais</span>, resultando em uma performance, segurança e exclusividade que templates não podem oferecer.
+                        <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                        Enquanto a maioria usa "sites prontos" (templates), nós construímos cada projeto do zero. Seu site é <span class="font-bold">desenvolvido à mão por programadores profissionais</span>, resultando em uma performance, segurança e exclusividade que templates não podem oferecer.
                     </p>
                 </div>
                 
@@ -727,7 +712,8 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold">Foco nos Core Web Vitals</h4>
-                                    <p class="text-gray-600">Otimizamos o carregamento (LCP), interatividade (FID) e estabilidade visual (CLS) para garantir a <span class="auto-highlight">melhor nota de performance no Google</span>.</p>
+                                    <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                                    <p class="text-gray-600">Otimizamos o carregamento (LCP), interatividade (FID) e estabilidade visual (CLS) para garantir a <span class="font-bold">melhor nota de performance no Google</span>.</p>
                                 </div>
                             </li>
                             <li class="flex items-start">
@@ -736,7 +722,8 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold">Segurança e Acessibilidade (WAI-ARIA)</h4>
-                                    <p class="text-gray-600">Implementamos práticas de segurança robustas e seguimos as diretrizes de acessibilidade para que <span class="auto-highlight">todos os usuários</span> possam navegar no seu site.</p>
+                                    <!-- ATUALIZADO: span.auto-highlight removido e span.font-bold adicionado -->
+                                    <p class="text-gray-600">Implementamos práticas de segurança robustas e seguimos as diretrizes de acessibilidade para que <span class="font-bold">todos os usuários</span> possam navegar no seu site.</p>
                                 </div>
                             </li>
                         </ul>
@@ -927,24 +914,7 @@
 
         revealElements.forEach(el => observer.observe(el));
         
-        // --- NOVO SCRIPT PARA HIGHLIGHT AUTOMÁTICO (EFEITO GRIFAR) ---
-        const highlightElements = document.querySelectorAll('.auto-highlight');
-        const highlightObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Adiciona a classe com um pequeno atraso para sincronizar melhor com o scroll
-                    setTimeout(() => {
-                        entry.target.classList.add('highlight-visible');
-                        highlightObserver.unobserve(entry.target); // Observa apenas uma vez
-                    }, 250); // Atraso de 250ms
-                }
-            });
-        }, { 
-            threshold: 0.1 // <-- ALTERADO de 0.8 para 0.1 para melhor detecção mobile
-        }); 
-
-        highlightElements.forEach(el => highlightObserver.observe(el));
-        // --- FIM DO SCRIPT DE HIGHLIGHT ---
+        // --- SCRIPT DE HIGHLIGHT REMOVIDO ---
 
 
         // Script para Pop-up do WhatsApp
