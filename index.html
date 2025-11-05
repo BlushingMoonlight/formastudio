@@ -180,6 +180,24 @@
 
         /* --- ESTILO DE HIGHLIGHT REMOVIDO --- */
 
+        /* === ALTERAÇÃO 2: ANIMAÇÃO DE FLUTUAÇÃO === */
+        @keyframes float-breathe {
+          0% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px); /* Ajuste a altura da flutuação aqui */
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
+
+        .floating-image {
+            animation: float-breathe 6s ease-in-out infinite; /* Ajuste a duração (6s) aqui */
+        }
+        /* === FIM DA ALTERAÇÃO 2 === */
+
     </style>
 </head>
 <body class="antialiased">
@@ -229,7 +247,12 @@
         <section class="pt-32 pb-32 relative overflow-hidden bg-white">
         <!-- === ALTERAÇÃO 1 FIM === -->
             
-            <!-- VÍDEO DE FUNDO ADICIONADO -->
+            <!-- 
+              === NOTA SOBRE A ALTERAÇÃO 1 (VÍDEO HERO) ===
+              Os atributos 'autoplay', 'loop', 'muted', e 'playsinline' já estavam presentes.
+              Esta é a configuração correta para permitir o autoplay em loop no mobile.
+              Nenhuma alteração no código foi necessária aqui.
+            -->
             <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
                 <source src="Assets/videob.mp4" type="video/mp4">
                 Seu navegador não suporta vídeos.
@@ -442,7 +465,8 @@
                     <!-- Coluna de Imagem/Gráfico -->
                     <div class="reveal">
                         <!-- IMAGEM ATUALIZADA -->
-                        <img src="Assets/imagema.jpg" alt="Equipe da Forma Studio oferecendo suporte dedicado" class="rounded-lg shadow-md w-full h-full object-cover">
+                        <!-- === ALTERAÇÃO 2: CLASSE ADICIONADA === -->
+                        <img src="Assets/imagema.jpg" alt="Equipe da Forma Studio oferecendo suporte dedicado" class="rounded-lg shadow-md w-full h-full object-cover floating-image">
                     </div>
                     <!-- Coluna de Texto -->
                     <div class="reveal" style="transition-delay: 200ms;">
